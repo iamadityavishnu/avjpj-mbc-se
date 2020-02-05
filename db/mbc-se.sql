@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 10:00 AM
+-- Generation Time: Feb 05, 2020 at 12:08 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -37,16 +37,17 @@ CREATE TABLE IF NOT EXISTS `question_set` (
   `answer` varchar(5) NOT NULL,
   `difficulty` varchar(10) NOT NULL,
   PRIMARY KEY (`sl_no`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `question_set`
 --
 
 INSERT INTO `question_set` (`sl_no`, `category`, `question`, `option1`, `option2`, `option3`, `option4`, `answer`, `difficulty`) VALUES
-(1, 'physics', 'jhhg', 'jhg', 'jhg', 'jhg', 'jhg', 'a', 'easy'),
-(2, 'physics', 'jhg', 'jhg', 'jhg', 'jh', 'gnn', 'a', 'easy'),
-(3, 'physics', 'jhg', 'hjg', 'jh', 'gjh', 'g', 'a', 'easy');
+(1, 'physics', 'Who is SI unit of Power?', 'Watt', 'Tesla', 'Joule', 'Ohm', 'c', 'easy'),
+(2, 'chemistry', 'Who is father of Chemistry?', 'Antonie Lavoisier', 'JJ Thomson', 'Rudyard Kiplin', 'Bose', 'a', 'easy'),
+(3, 'maths', 'What is square of 11?', '129', '121', '110', '111', 'b', 'easy'),
+(4, 'gk', 'Who is PM of India?', 'Manmohan Singh', 'Amit Shah', 'Ramnath Kovind', 'Narendra Modi', 'd', 'easy');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
