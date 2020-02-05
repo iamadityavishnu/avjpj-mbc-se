@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="q-style.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="q-script.js?v=1" defer></script>
+        <title>Question Upload</title>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <div id="left-div">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/01/Mar_Baselios_Christian_College_Logo.png" alt="mbc-logo">
+                    <div style="padding-left: 20px;">Mar Baselios Christian College of Engg. & Technology</div>
+                </div>
+                <div id="right-div">
+                    <i class="material-icons" style="font-size:36px">person</i>User
+                </div>
+            </div>
+
+            <div class="body-container">
+                <table class="q-table">
+                    <tr>
+                        <td class="left-td">Select category of question</td>
+                        <td>:</td>
+                        <td>
+                            <select name="category" id="category">
+                                <option value="physics">Physics</option>
+                                <option value="chemistry">Chemistry</option>
+                                <option value="maths">Maths</option>
+                                <option value="gk">General Knowledge</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left-td">Question</td class="left-td">
+                        <td>:</td>
+                        <td>
+                            <textarea name="question" id="question" cols="50" rows="5"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left-td">Options</td class="left-td">
+                        <td>:</td>
+                        <td>
+                            <table class="options">
+                                <tr>
+                                    <td> A </td>
+                                    <td> - </td>
+                                    <td>
+                                        <input type="text" name="op1" id="op1">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> B </td>
+                                    <td> - </td>
+                                    <td>
+                                        <input type="text" name="op2" id="op2">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> C </td>
+                                    <td> - </td>
+                                    <td>
+                                        <input type="text" name="op3" id="op3">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td> D </td>
+                                    <td> - </td>
+                                    <td>
+                                        <input type="text" name="op4" id="op4">
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left-td">Answer</td class="left-td">
+                        <td>:</td>
+                        <td class="right-td">
+                            <select name="answer" id="answer">
+                                <option value="a"> A </option>
+                                <option value="b"> B </option>
+                                <option value="c"> C </option>
+                                <option value="d"> D </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="left-td">Difficulty</td class="left-td">
+                        <td>:</td>
+                        <td class="right-td">
+                            <select name="difficulty" id="difficulty">
+                                <option value="easy"> EASY </option>
+                                <option value="average"> AVERAGE </option>
+                                <option value="hard"> HARD </option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td colspan="3">
+                            <input type="button" value="Submit" onclick="submit()">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="footer"></div>
+        </div>
+    </body>
+</html>

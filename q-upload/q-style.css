@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    padding: 10px;
+}
+.header {
+    width: 100%;
+    height: auto;
+    display: flex;
+}
+.header img {
+    height: 50px;
+}
+.header div {
+    display: flex;
+    align-items: center;
+}
+#left-div {
+    width: 60%;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#right-div {
+    display: flex;
+    padding-right: 20px;
+    width: 40%;
+    justify-content: flex-end;
+    align-items: center;
+    font-size: 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.body-container {
+    margin-top: 20px;
+    width: 100% auto;
+    height: auto;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around;
+    padding-left: 50px;
+}
+.body-container div {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 15px;
+    padding: 10px;
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+input[type=text] {
+    border-radius: 7px;
+    padding: 5px;
+    border: 1px solid grey;
+}
+input[type=button] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: seagreen;
+    color: white;
+    font-weight: bold;
+    transition: .7s;
+}
+input[type=button]:hover {
+    background-color: green;
+    cursor: pointer;
+}
+select {
+    width: 100px;
+    align-items: center;
+    padding: 5px;
+    border-radius: 5px;
+}
+select div {
+    border-radius: 10px;
+}
+textarea {
+    border-radius: 10px;
+}
+
+.q-table {
+    padding: 10px;
+    width: auto !important;
+}
+.q-table tr td {
+    padding: 5px;
+}
+.left-td {
+    text-align: center;
+}
+.right-td {
+
+}
