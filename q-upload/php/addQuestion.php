@@ -1,5 +1,5 @@
 <?php 
-    include 'dbConnect.php';
+    include '../../dbConnect.php';
 
     $category = $_GET['category'];
     $question = $_GET['question'];

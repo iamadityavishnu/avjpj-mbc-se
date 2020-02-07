@@ -21,7 +21,23 @@
     font-weight: bold;
     font-size: 20px;
     padding: 10px;
+    padding-left: 30px;
 }
+.question-list {
+    display: flex;
+    width: 100%;
+    padding-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.q-circle {
+    background-color: khaki;
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+    border-radius: 50px;
+}
+
 .option-container {
     background-color: cornflowerblue;
     padding: 10px;
@@ -51,13 +67,27 @@
     border-radius: 20px;
     cursor: pointer;
 }
-.topic-container .line-next {
+.line-next {
     border: 1px solid black;
     width: 15%
 }
 #submit {
-    width: 50%;
+    width: 100%;
     display: flex;
     justify-content: center;
     padding: 10px;
+}
+#submit input {
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    border: 0;
+    background-color: chartreuse;
+    color: white;
+    font-weight: bold;
+    transition: .7s;
+}
+#submit input:hover {
+    background-color: green;
+    cursor: pointer;
+    touch-action: cross-slide-x;
 }

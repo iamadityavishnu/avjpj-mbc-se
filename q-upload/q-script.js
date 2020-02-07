@@ -34,12 +34,11 @@ function submit() {
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4 && xhr.status == 200) {
                 console.log("XHR-Status - " + xhr.responseText);
-                alert('Question Added!')
+                alert('Question Added!');
+                clearField();
             }
         }
         xhr.send();
-
-        clearField();
     }
     else {
         alert("Do not leave any field empty!");
