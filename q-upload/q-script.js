@@ -27,13 +27,14 @@ function submit() {
         x += "&op4="+option4;
         x += "&answer="+answer;
         x += "&diff="+difficulty;
+        x += "&user=Test_user"; 
         // console.log(typeof(question));
 
         var xhr = new XMLHttpRequest();
         xhr.open('GET', 'php/addQuestion.php?'+x, true);
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4 && xhr.status == 200) {
-                console.log("XHR-Status - " + xhr.responseText);
+                console.log("XHR-Status = " + xhr.responseText);
                 alert('Question Added!');
                 clearField();
             }
