@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../style.css?">
+    <link rel="stylesheet" href="../style.css?v=2">
     <title>Document</title>
 
     <script>
@@ -55,11 +55,21 @@
         }
         var currentQuestion = 0;
         var currentTopic = 0;
-        //  Prototype of Question Object
+
+        //  Prototype of Question Object *D*
         console.log(question);
 
-        function setQuestion() {
-             
+        function setQuestion(arr, subject) {
+            arr.length = 0;
+            for(let i=0; i<question[subject].easy.length; i++) {
+                arr.push(question[subject].easy[i]);
+            }
+            for(let i=0; i<question[subject].average.length; i++) {
+                arr.push(question[subject].average[i]);
+            }
+            for(let i=0; i<question[subject].hard.length; i++) {
+                arr.push(question[subject].hard[i]);
+            }
         }
     </script>
 </head>
@@ -85,8 +95,18 @@
         // fetchCategoryQuestions("gk", "easy");
         // fetchCategoryQuestions("gk", "average");
         // fetchCategoryQuestions("gk", "hard");
+        ?> 
+        <script>
+            setQuestion(phyQuestion, "physics"); 
+            console.log("physics", phyQuestion);
 
-        //  Delete later - Debug function
+            // setQuestion(chemQuestion, "chemistry"); 
+            // setQuestion(mathsQuestion, "maths"); 
+            // setQuestion(gkQuestion, "gk"); 
+        </script> 
+        <?php
+
+        //  Debug function *D*
         function cprint($string) {
             ?> 
             <script>console.log("<?php echo $string; ?>");</script> 
@@ -134,8 +154,8 @@
                 addQuestion($row, $diff, $sub);
             }
 
-            // Debugs Query
-            cprint($var_sql);
+            // Debugs Query *D*
+            // cprint($var_sql);
             // cprint(mysql_fetch_array($result));
         }
     ?>  
@@ -160,36 +180,35 @@
         <div class="question-container">
             <div class="question" id="question-target">
                 Q. Question Here?
-                <div id="get"></div>
             </div>
             <div class="option-container">
                 <div id="option_target">
                     <div>
                         <input type="radio" name="ans" id="ans" value="a">
-                        <span id="op1">Option 1</span>
+                        <span id="op1-target">Option 1</span>
                     </div>
                     <div>
                         <input type="radio" name="ans" id="ans" value="b">
-                        <span id="op2">Option 2</span>
+                        <span id="op2-target">Option 2</span>
                     </div>     
                     <div>
                         <input type="radio" name="ans" id="ans" value="c">
-                        <span id="op3">Option 3</span>
+                        <span id="op3-target">Option 3</span>
                     </div>               
                     <div>
                         <input type="radio" name="ans" id="ans" value="d">
-                        <span id="op4">Option 4</span>
+                        <span id="op4-target">Option 4</span>
                     </div>
                 </div>
             </div>
         </div>
         <div id="submit">
             <input type="submit" value="Submit" onclick="findAns()">
-            <input type="button" value="Next" onclick="nextTopic()" style="margin-left: 50px">
+            <input type="button" value="Next Category" onclick="nextTopic()" style="margin-left: 50px">
         </div>
     </div>
 </body>
 </html>
 
-<script src="../script.js"> </script>
+<script src="../script.js?v=1"> </script>
 
