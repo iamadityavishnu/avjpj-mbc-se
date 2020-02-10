@@ -9,6 +9,11 @@
 
     <script>
         const questionNo = 10;
+        var phyQuestion = [], 
+            chemQuestion = [],
+            mathsQuestion = [],
+            gkQuestion = [];
+
         var level = {
             easy : {
                 e: 3,
@@ -52,6 +57,10 @@
         var currentTopic = 0;
         //  Prototype of Question Object
         console.log(question);
+
+        function setQuestion() {
+             
+        }
     </script>
 </head>
 <body>
@@ -61,6 +70,21 @@
         
         //  Initialise Question Parameters
         $subject = ["physics", "chemistry", "maths", "gk"];
+        fetchCategoryQuestions("physics", "easy");
+        fetchCategoryQuestions("physics", "average");
+        fetchCategoryQuestions("physics", "hard");
+
+        // fetchCategoryQuestions("chemistry", "easy");
+        // fetchCategoryQuestions("chemistry", "average");
+        // fetchCategoryQuestions("chemistry", "hard");
+
+        // fetchCategoryQuestions("maths", "easy");
+        // fetchCategoryQuestions("maths", "average");
+        // fetchCategoryQuestions("maths", "hard");
+
+        // fetchCategoryQuestions("gk", "easy");
+        // fetchCategoryQuestions("gk", "average");
+        // fetchCategoryQuestions("gk", "hard");
 
         //  Delete later - Debug function
         function cprint($string) {
