@@ -1,5 +1,7 @@
-const questionNo = 10, user = "test";
-var currentQuestion = 0;
+const questionNo = 10;
+var user = "test", 
+    currentTopic = "physics", 
+    currentQuestion = 0;
 
 initEvnironment();
 
@@ -8,22 +10,51 @@ function initEvnironment() {
     document.getElementsByClassName("topic")[0].classList.add("topic-selected");
     document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
     createUserTable();
+    setQuestion(questionNo, currentTopic);
+
     // deleteUserTable();
 }
 function createUserTable() {
-    console.log("create user table");
+    // console.log("create user table");
     var xhr = new XMLHttpRequest();
     xhr.open('GET', 'createUserDb.php?&user='+user, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
-        }
-        else {
-            console.log("failed");
+            if(xhr.responseText != "1") {
+                // alert("Some Error has occured regarding your account.\n Please contact the institution");
+                // window.location = "http://localhost/avjpj-mbc-se/";
+            } 
         }
     }
     xhr.send(user);
 }
+
+function setQuestion(n, topic) {
+    var xhr = new XMLHttpRequest();
+    var x = "&n="+n+"&topic="+topic+"&user="+user;
+    xhr.open('GET', 'setQuestion.php?'+x, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.send(x);
+}
+
+function fetchQuestion(str) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'fetchQuestion.php', true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            var arr = JSON.parse(xhr.responseText);
+            console.log(arr);
+        }
+    }
+    xhr.send();
+}
+
+
+
 function questionList(n) {
     const target = document.getElementById('question-list');
     for(let i=1; i<=n; i++) {
