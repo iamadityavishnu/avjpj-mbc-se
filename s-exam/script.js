@@ -1,5 +1,6 @@
-const questionNo = 10;
+const questionNo = 10, user = "test";
 var currentQuestion = 0;
+
 initEvnironment();
 
 function initEvnironment() {
@@ -11,6 +12,17 @@ function initEvnironment() {
 }
 function createUserTable() {
     console.log("create user table");
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'createUserDb.php?&user='+user, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+        else {
+            console.log("failed");
+        }
+    }
+    xhr.send(user);
 }
 function questionList(n) {
     const target = document.getElementById('question-list');
