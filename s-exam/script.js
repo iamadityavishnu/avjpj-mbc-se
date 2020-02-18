@@ -1,7 +1,8 @@
 const questionNo = 10;
 var user = "test", 
     currentTopic = "physics", 
-    currentQuestion = 0;
+    currentQuestion = 1;
+var arr = {};
 
 initEvnironment();
 
@@ -11,7 +12,6 @@ function initEvnironment() {
     document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
     createUserTable();
     setQuestion(questionNo, currentTopic);
-
     // deleteUserTable();
 }
 function createUserTable() {
@@ -23,7 +23,11 @@ function createUserTable() {
             if(xhr.responseText != "1") {
                 // alert("Some Error has occured regarding your account.\n Please contact the institution");
                 // window.location = "http://localhost/avjpj-mbc-se/";
+                console.log("User DB Created");
             } 
+            else {
+                console.log("- User DB Created");
+            }
         }
     }
     xhr.send(user);
@@ -35,25 +39,43 @@ function setQuestion(n, topic) {
     xhr.open('GET', 'setQuestion.php?'+x, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
+            console.log("- Questions Set!");
+        }
+    }
+    xhr.send(x);
+
+    fetchQuestion();
+}
+
+function fetchQuestion() {
+    var xhr = new XMLHttpRequest();
+    var x = "&topic="+currentTopic+"&q="+currentQuestion+"&user="+user;
+
+    xhr.open('GET', 'fetchQuestion.php?'+x, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            arr = JSON.parse(xhr.responseText);
+            // console.log(arr);
+            displayQuestion(arr);
         }
     }
     xhr.send(x);
 }
 
-function fetchQuestion(str) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET', 'fetchQuestion.php', true);
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            var arr = JSON.parse(xhr.responseText);
-            console.log(arr);
-        }
-    }
-    xhr.send();
+function displayQuestion(arr) {
+    console.log(arr);
+    let q = document.getElementById('question-target'),
+        op1 = document.getElementById('op1-target'),
+        op2 = document.getElementById('op2-target'),
+        op3 = document.getElementById('op3-target'),
+        op4 = document.getElementById('op4-target');
+
+    q.innerHTML = arr.question;
+    op1.innerHTML = arr.option1;
+    op2.innerHTML = arr.option2;
+    op3.innerHTML = arr.option3;
+    op4.innerHTML = arr.option4;
 }
-
-
 
 function questionList(n) {
     const target = document.getElementById('question-list');
@@ -75,7 +97,9 @@ function selectQuestion(event) {
     //  event - div object
     document.getElementsByClassName("q-circle")[currentQuestion].classList.remove("question-selected");
     event.classList.add("question-selected");
-    currentQuestion = parseInt(event.innerHTML)-1;
+    currentQuestion = parseInt(event.innerHTML);
+
+    fetchQuestion();
 
     //  May Need to be changed later based on Question number
     
@@ -102,4 +126,4 @@ function findAns() {
 
 //  =-=-=-=-=-=-=-=-=-=-=-=-=-=
 // Randomise Question using random deletion of questions from "question"
-//     object..
+//     object..ś
