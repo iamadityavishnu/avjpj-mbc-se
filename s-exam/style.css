@@ -34,7 +34,7 @@
     overflow: auto;
 }
 .q-circle {
-    background-color: #e93c3cc9;
+    background-color: #9ccc65;
     padding: 10px;
     width:300px;
     text-align: center;
@@ -49,7 +49,7 @@
 }
 .question-selected {
     background-color: #fff !important;
-    border: 1px solid #e93c3cc9 !important;
+    border: 1px solid #9ccc65 !important;
     /* box-shadow: 0px 0px 10px black !important; */
     /* font-size: 20px; */
     font-weight: lighter;
@@ -65,7 +65,7 @@
     cursor: pointer;
 }
 .option-container {
-    background-color: #e93c3cc9;
+    background-color: #9ccc65;
     padding: 10px;
 }
 #option_target div {
@@ -113,11 +113,11 @@
     border-radius: 20px;
     cursor: pointer;
 }
-.topic:hover {
+/* .topic:hover {
     background-color: #000000;
     color: #fff;
     box-shadow: 0px 0px 10px black !important;
-}
+} */
 .topic-selected {
     background-color: #000000  !important;
     color: #fff !important;
