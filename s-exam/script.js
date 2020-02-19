@@ -1,5 +1,5 @@
-const questionNo = 10;
-var questionArray = [];
+const questionNo = 10, topics = ["physics", "chemistry", "maths", "gk"];
+var questionArray = [], t_counter = 0;
 var user = "test", 
     currentTopic = "physics", 
     currentQuestion = 1;
@@ -41,15 +41,15 @@ function setQuestion(n, topic) {
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
             console.log("- Questions Set!");
+            fetchQuestion();
         }
     }
     xhr.send(x);
-
-    fetchQuestion();
 }
 
 function fetchQuestion() {
     var xhr = new XMLHttpRequest();
+    console.log(currentTopic);
     var x = "&topic="+currentTopic+"&q="+currentQuestion+"&user="+user;
 
     xhr.open('GET', 'fetchQuestion.php?'+x, true);
@@ -114,8 +114,34 @@ function selectQuestion(event) {
     
 }
 
-function nextTopic() {
-    console.log("Wait... Sheriyakam");
+function nextTopic() {  
+    //  Change Style of Topic Selected
+    document.getElementsByClassName('topic')[t_counter].classList.remove('topic-selected');
+    t_counter++;
+    document.getElementsByClassName('topic')[t_counter].classList.add('topic-selected');
+
+    currentTopic = topics[t_counter];
+    // console.log(currentTopic, t_counter);
+    setQuestion(questionNo, currentTopic);
+    console.log(t_counter);
+    if(t_counter >= 3) {
+        //  Change Next Category Button to "Finish"
+        var btn = document.getElementById('d-button');
+        // btn.removeAttribute("onclick");
+        btn.setAttribute("onclick", "finish()");
+        btn.setAttribute("value", "Finish");
+        console.log(btn);
+        // console.log("Finish");
+    }
+}
+
+function finish() {
+    console.log("Finished Test");
+
+    //  Evaluate Time
+    //  Evaluate Score
+
+    //Push Values to Database
 }
 
 

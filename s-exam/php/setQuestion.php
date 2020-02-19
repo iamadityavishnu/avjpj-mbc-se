@@ -28,8 +28,8 @@
         // echo $fetch_question. "\n";
         // echo "================\n";
 
-        $insert_user = "INSERT INTO $user (sl_no, question, option1, option2, option3, option4, answer, topic) VALUES(".($i+1).", '".$row[0]."','".$row[1]."','".$row[2]."','".$row[3]."','".$row[4]."','".$row[5]."', '$topic')";
-        // $con = mysql_query($insert_user);
+        $insert_user = 'INSERT INTO '.$user.' (sl_no, question, option1, option2, option3, option4, answer, topic) VALUES('.($i+1).', "'.$row[0].'","'.$row[1].'","'.$row[2].'","'.$row[3].'","'.$row[4].'","'.$row[5].'", "'.$topic.'")';
+        $con = mysql_query($insert_user);
         // echo $insert_user. "\n";
         // echo "================\n";
         // echo "================\n";

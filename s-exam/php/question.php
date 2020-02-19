@@ -52,10 +52,10 @@
         </div>
         <div id="submit">
             <input type="submit" value="Submit" onclick="findAns()">
-            <input type="button" value="Next Category" onclick="nextTopic()" style="margin-left: 50px">
+            <input type="button" id='d-button' value="Next Category" onclick="nextTopic()" style="margin-left: 50px">
         </div>
     </div>
 </body>
 </html>
 
-<script src="../script.js?v=4"> </script>
+<script src="../script.js?v=7"> </script>
