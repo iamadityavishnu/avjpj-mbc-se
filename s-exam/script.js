@@ -95,10 +95,11 @@ function questionList(n) {
 
 function selectQuestion(event) {
     //  event - div object
-    document.getElementsByClassName("q-circle")[currentQuestion].classList.remove("question-selected");
+    document.getElementsByClassName("q-circle")[(currentQuestion-1)].classList.remove("question-selected");
     event.classList.add("question-selected");
     currentQuestion = parseInt(event.innerHTML);
 
+    console.log(currentQuestion);
     fetchQuestion();
 
     //  May Need to be changed later based on Question number
@@ -115,11 +116,16 @@ var answer = null;
 //  Find Marked Answer
 function findAns() {
     var a = document.getElementsByName('ans');
+    var flag = 0;
     for(let i=0; i<4; i++) {
         if(a[i].checked) {
             answer = a[i].value;
             console.log(answer);
+            flag++;
         }
+    }
+    if(flag == 0) {
+        alert("Please select an answer");
     }
 }
 
