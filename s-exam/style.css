@@ -1,9 +1,10 @@
+/* Style for question.php */
 * {
     padding: 0;
     margin: 0;
 }
 .header {
-    padding: 30px;
+    padding: 15px;
     width: 100% auto;
     text-align: center;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -13,7 +14,7 @@
 }
 
 .container {
-    padding: 50px;
+    padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .question {
@@ -60,17 +61,36 @@
     background-color: grey !important;
     border: none;
 }
+#ans {
+    cursor: pointer;
+}
 .option-container {
     background-color: #e93c3cc9;
     padding: 10px;
 }
-#option_target div{
+#option_target div {
     display: flex;
     width: 100% auto;
     align-items: center;
     margin: auto;
     padding: 10px;
-    margin-left: 50px;
+    padding-left: 50px;
+    opacity: 1;
+    transition: 0.5s;
+}
+#option_target div:hover{
+    opacity: 0.9;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.198);
+}
+#option_target div span {
+    padding: 6px;
+    font-size: 18px;
+}
+#answer-selected {
+    opacity: 0.9;
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.198);
 }
 .topic-container {
     display: flex;
@@ -79,7 +99,7 @@
     justify-content: space-around;
     align-items: center;
 }
-.topic{
+.topic {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -111,20 +131,25 @@
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 20px;
 }
 #submit input {
     padding: 10px 20px 10px 20px;
     border-radius: 5px;
     border: 0;
-    background-color: chartreuse;
+    background-color: #000000   ;
     color: white;
-    font-weight: bold;
+    font-weight: lighter;
+    font-size: 14px;
     transition: .7s;
+    outline: none;
 }
 #submit input:hover {
-    background-color: green;
+    background-color: #fff;
+    color: #000000;
     cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
     touch-action: cross-slide-x;
 }
 

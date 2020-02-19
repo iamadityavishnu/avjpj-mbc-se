@@ -42,7 +42,7 @@
                     <div>
                         <input type="radio" name="ans" id="ans" value="c">
                         <span id="op3-target">Option 3</span>
-                    </div>               
+                    </div>    
                     <div>
                         <input type="radio" name="ans" id="ans" value="d">
                         <span id="op4-target">Option 4</span>
