@@ -29,7 +29,7 @@
     width: inherit;
     padding: 10px;
     margin: 10px;
-    align-items: center;
+    align-items: ceginter;
     overflow: auto;
 }
 .q-circle {
@@ -91,6 +91,7 @@
 .topic:hover {
     background-color: #000000;
     color: #fff;
+    box-shadow: 0px 0px 10px black !important;
 }
 .topic-selected {
     background-color: #000000  !important;
