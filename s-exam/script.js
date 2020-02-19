@@ -99,6 +99,12 @@ function selectQuestion(event) {
     event.classList.add("question-selected");
     currentQuestion = parseInt(event.innerHTML);
 
+    //  Clear marked Question
+    var a = document.getElementsByName('ans');
+    for(let i=0; i<4; i++) {
+        a[i].checked = false;
+    }
+
     console.log(currentQuestion);
     fetchQuestion();
 
@@ -127,9 +133,4 @@ function findAns() {
     if(flag == 0) {
         alert("Please select an answer");
     }
-}
-
-
-//  =-=-=-=-=-=-=-=-=-=-=-=-=-=
-// Randomise Question using random deletion of questions from "question"
-//     object..ś
+} 
