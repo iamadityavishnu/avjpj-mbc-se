@@ -13,6 +13,7 @@
         answer varchar(50) NOT NULL, 
         result int, 
         topic varchar(10))";
+        
     $conn = mysql_query($var_sql);
     // echo $conn;
 ?>

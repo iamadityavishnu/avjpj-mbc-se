@@ -1,4 +1,5 @@
 const questionNo = 10;
+var questionArray = [];
 var user = "test", 
     currentTopic = "physics", 
     currentQuestion = 1;
@@ -63,7 +64,7 @@ function fetchQuestion() {
 }
 
 function displayQuestion(arr) {
-    console.log(arr);
+    // console.log(arr);
     let q = document.getElementById('question-target'),
         op1 = document.getElementById('op1-target'),
         op2 = document.getElementById('op2-target'),
@@ -80,6 +81,7 @@ function displayQuestion(arr) {
 function questionList(n) {
     const target = document.getElementById('question-list');
     for(let i=1; i<=n; i++) {
+        questionArray.push(i);
         let div = document.createElement("DIV");
         div.innerHTML = i;
         div.classList.add("q-circle");
@@ -105,7 +107,7 @@ function selectQuestion(event) {
         a[i].checked = false;
     }
 
-    console.log(currentQuestion);
+    // console.log(currentQuestion);
     fetchQuestion();
 
     //  May Need to be changed later based on Question number
@@ -128,9 +130,43 @@ function findAns() {
             answer = a[i].value;
             console.log(answer);
             flag++;
+            finalizeAnswer(answer);
         }
     }
     if(flag == 0) {
         alert("Please select an answer");
     }
 } 
+
+function finalizeAnswer(answer) {
+    var question = document.getElementsByClassName('q-circle')[(currentQuestion-1)];
+    question.classList.remove("question-selected");
+    question.classList.add("question-done");
+
+    var index = questionArray.indexOf(currentQuestion);
+    var nextQ;
+
+    console.log("index="+index);
+    questionArray.splice(questionArray.indexOf(currentQuestion),1);
+    console.log(questionArray);
+
+    if(document.getElementsByClassName('q-circle')[questionArray[index]] == undefined) {
+        nextQ = document.getElementsByClassName('q-circle')[(questionArray[0]-1)];
+    }
+    else   
+        nextQ = document.getElementsByClassName('q-circle')[(questionArray[index]-1)];
+    console.log(nextQ);
+
+
+    var xhr = new XMLHttpRequest();
+    var x = "&slno="+currentQuestion+"&topic="+currentTopic+"&ans="+answer+"&user="+user;
+    xhr.open('GET', 'addResult.php?'+x, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+            if(questionArray.length != 0)
+                selectQuestion(nextQ);
+        }
+    }
+    xhr.send(x);
+}
