@@ -33,7 +33,7 @@
     overflow: auto;
 }
 .q-circle {
-    background-color: #e93c3cc9;
+    /* background-color: #e93c3cc9;
     padding: 10px;
     width:300px;
     text-align: center;
@@ -41,7 +41,10 @@
     transition: .7s;
     font-weight: bold;
     font-size: 20px;
-    color: #fff;
+    color: #fff; */
+
+    background-color: lawngreen;
+    border: none;
 }
 .q-circle:hover {
     cursor: pointer;
@@ -54,6 +57,9 @@
     font-weight: lighter;
     color: #000000;
     transform: scale(0.7);
+}
+.question-done {
+    pointer-events: none;
 }
 .option-container {
     background-color: #e93c3cc9;
