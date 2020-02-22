@@ -2,10 +2,46 @@ const questionNo = 10, topics = ["physics", "chemistry", "maths", "gk"];
 var questionArray = [], t_counter = 0;
 var user = "test", 
     currentTopic = "physics", 
-    currentQuestion = 1;
+    currentQuestion = 1,
+    examDuration = timerDuration = 10, lap = examDuration;
 var arr = {};
+var topicTime = {
+    physics: 0,
+    chemistry: 0,
+    maths: 0,
+    gk: 0
+}, interval;
 
 initEvnironment();
+
+window.onload = function() {
+    var target = document.getElementById('timer');
+
+    startTimer(target, examDuration);
+}
+
+function startTimer(target, duration) {
+    var timer = duration, minutes, seconds;
+
+    interval = setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        target.innerHTML = minutes + ":" + seconds;
+
+        //  Stop when count down ends
+        if (--timer < 0) {
+            timer = duration;
+            clearInterval(interval);
+        }
+        timerDuration--;
+        if(timerDuration === 0) 
+            finish();
+    }, 1000);
+}
 
 function initEvnironment() {
     questionList(questionNo);
@@ -80,6 +116,7 @@ function displayQuestion(arr) {
 
 function questionList(n) {
     const target = document.getElementById('question-list');
+    questionArray.length = 0;
     for(let i=1; i<=n; i++) {
         questionArray.push(i);
         let div = document.createElement("DIV");
@@ -115,33 +152,86 @@ function selectQuestion(event) {
 }
 
 function nextTopic() {  
+    //  Mark time for each topic
+    topicTime[currentTopic] = lap - timerDuration;
+    lap = timerDuration; 
+    // console.log(topicTime);
+
     //  Change Style of Topic Selected
     document.getElementsByClassName('topic')[t_counter].classList.remove('topic-selected');
     t_counter++;
     document.getElementsByClassName('topic')[t_counter].classList.add('topic-selected');
 
+    //  Reset Question Lists
+    document.getElementById('question-list').innerHTML = "";
+    questionList(questionNo);
+    currentQuestion = 1;
+    document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
+
+    //  Change current topic & Fetch Questions
     currentTopic = topics[t_counter];
     // console.log(currentTopic, t_counter);
     setQuestion(questionNo, currentTopic);
-    console.log(t_counter);
+    // console.log(t_counter);
     if(t_counter >= 3) {
         //  Change Next Category Button to "Finish"
         var btn = document.getElementById('d-button');
         // btn.removeAttribute("onclick");
         btn.setAttribute("onclick", "finish()");
         btn.setAttribute("value", "Finish");
-        console.log(btn);
+        // console.log(btn);
         // console.log("Finish");
     }
 }
 
-function finish() {
+//  Finish and Clean Up Test
+function finish() {    
     console.log("Finished Test");
+    topicTime[currentTopic] = lap - timerDuration;
+    clearInterval(interval);
 
-    //  Evaluate Time
+    console.log(topicTime);
+    
     //  Evaluate Score
-
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "getMarks.php?&user="+user, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            var resObj = JSON.parse(xhr.responseText);
+            console.log(resObj);
+            pushUserDataToDB(resObj);
+        }
+    }
+    xhr.send(user);
+    
     //Push Values to Database
+
+    //  Redirect to Exam Finish
+    // window.location = "examFinish.php";
+}
+
+function pushUserDataToDB(obj) {
+    var x = "&user=" + user;
+    x += "&phytime=" + topicTime["physics"];
+    x += "&chemtime=" + topicTime["chemistry"];
+    x += "&mathtime=" + topicTime["maths"];
+    x += "&gktime=" + topicTime["gk"];
+
+    x += "&phymark=" + parseInt(obj["physics"]);
+    x += "&chemmark=" + parseInt(obj["chemistry"]);
+    x += "&mathmark=" + parseInt(obj["maths"]);
+    x += "&gkmark=" + parseInt(obj["gk"]);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "pushResult.php?"+x, true);
+    xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
+        }
+    }
+    xhr.send(x);
+
+    console.log(x);
 }
 
 

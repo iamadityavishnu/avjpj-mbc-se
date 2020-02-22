@@ -12,6 +12,9 @@
         <h1> Mar Baselious Christian College of Engg. & Technology </h1>
         <h3> Online Scholarship Exam </h3>
     </div>
+
+    <div id="timer" class="timer"></div>
+
     <div class="container">
         <div class="topic-container">
             <div class="topic">Physics</div>
@@ -22,9 +25,11 @@
             <div class="line-next"></div>
             <div class="topic">GK</div>
         </div>
+        
         <div class="question-list" id="question-list">
             
         </div>
+        
         <div class="question-container">
             <div class="question" id="question-target">
                 Q. Question Here?
@@ -50,6 +55,7 @@
                 </div>
             </div>
         </div>
+        
         <div id="submit">
             <input type="submit" value="Submit" onclick="findAns()">
             <input type="button" id='d-button' value="Next Category" onclick="nextTopic()" style="margin-left: 50px">
@@ -58,4 +64,4 @@
 </body>
 </html>
 
-<script src="../script.js?v=7"> </script>
+<script src="../script.js?v=1"> </script>
