@@ -1,0 +1,60 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+html {
+    scroll-behavior: smooth;
+}
+.container {
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    background: url('https://mbcpeermade.com/userfiles/poster/1b97d750aa514ce1830cb183dab59107.jpg');
+}
+.header {
+    height: 100px;
+}
+.body-container {
+    width: 100% auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.dashboard {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-around;
+    padding: 100px;
+}
+.dashboard div {
+    width: 250px;
+    height: 250px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    display: flex;
+    background-color: black;
+    color: white;
+    opacity: .7;
+    transition: .7s;
+}
+.dashboard div:hover {
+    cursor: pointer;
+    opacity: .3;
+}
+
+/* Style for student-result.php */
+.result-container {
+    width: 100vw;
+}
+.result-body-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+}
+table tr th {
+    padding: 10px;
+}

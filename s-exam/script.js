@@ -3,7 +3,7 @@ var questionArray = [], t_counter = 0;
 var user = "test", 
     currentTopic = "physics", 
     currentQuestion = 1,
-    examDuration = timerDuration = 10, lap = examDuration;
+    examDuration = timerDuration = 5, lap = examDuration;
 var arr = {};
 var topicTime = {
     physics: 0,
@@ -33,7 +33,7 @@ function startTimer(target, duration) {
         target.innerHTML = minutes + ":" + seconds;
 
         //  Stop when count down ends
-        if (--timer < 0) {
+        if (timer-- < 0) {
             timer = duration;
             clearInterval(interval);
         }

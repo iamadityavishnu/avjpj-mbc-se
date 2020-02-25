@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="header">
-        <h1> Mar Baselious Christian College of Engg. & Technology </h1>
+        <h1> Mar Baselios Christian College of Engg. & Technology </h1>
         <h3> Online Scholarship Exam </h3>
     </div>
 
@@ -64,4 +64,4 @@
 </body>
 </html>
 
-<script src="../script.js?v=1"> </script>
+<script src="../script.js?v=3"> </script>
