@@ -109,26 +109,28 @@
                                 <h4>Login Here</h4>
                                 <p>Login with credentials sent to your mail</p>
                             </div>
-                            <div class="form">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="single_input">
-                                            <legend class="login-form-legend">Username</legend>
-                                            <input class="wide" type="text" name="username" autocomplete="off">
+                            <form action="login/login.php" method="post">
+                                <div class="form">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="single_input">
+                                                <legend class="login-form-legend">Username</legend>
+                                                <input class="wide" type="text" name="username" id="username" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="single_input">
+                                                <legend class="login-form-legend" style="padding-top: 10px">Password</legend>
+                                                <input class="wide" type="Password" name="password" id="password" autocomplete="off">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="single_input">
-                                            <legend class="login-form-legend" style="padding-top: 10px">Password</legend>
-                                            <input class="wide" type="Password" name="Password" autocomplete="off">
-                                         </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <p>Can't login? Click <a href="">here</a></p>
-                            <div class="submit_btn">
-                                <button class="boxed-btn3" type="submit">Login</button>
-                            </div>
+                                <p>Can't login? Click <a href="">here</a></p>
+                                <div class="submit_btn">
+                                    <button class="boxed-btn3" type="submit">Login</button>
+                                </div>
+                             </form>
                         </div>
                     </div>
                 </div>
@@ -697,3 +699,12 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 </body>
 
 </html>
+
+<script>
+    function login() {
+        var user = document.getElementById('username').value;
+        var pass = document.getElementById('password').value;
+
+        var xhr = 
+    }
+</script>
