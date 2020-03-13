@@ -39,5 +39,7 @@
 
     $conn = mysql_query($var_sql);
 
-    echo $conn;
+    // echo $conn;
+    $arr = [$var_sql, $conn];
+    echo json_encode($arr);
 ?>

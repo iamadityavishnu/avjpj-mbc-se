@@ -34,8 +34,16 @@ function submit() {
         xhr.open('GET', 'php/addQuestion.php?'+x, true);
         xhr.onreadystatechange = function() {
             if(xhr.readyState == 4 && xhr.status == 200) {
-                console.log("XHR-Status = " + xhr.responseText);
-                alert('Question Added!');
+                //console.log("XHR-Status = " + xhr.responseText);
+                var arr = JSON.parse(xhr.responseText);
+                let query = document.getElementById("query"), color = "black";
+                if(arr[1] === true)
+                    color = "green";
+                else
+                    color = "red";
+                query.style.borderColor = query.style.color = color;
+                query.innerHTML=arr[0];
+                //alert('Question Added!');
                 clearField();
             }
         }
