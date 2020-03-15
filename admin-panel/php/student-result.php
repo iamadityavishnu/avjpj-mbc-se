@@ -10,23 +10,11 @@
     <?php 
         include '../../dbConnect.php';
 
-        $var_sql = "SELECT * FROM student_list";
-        $res = mysql_query($var_sql);
+        $res = mysql_query("SELECT * FROM student_list");
     ?>
     <div class="result-container">
         <div class="result-header"></div>
         <div class="result-body-container">
-            <table class="result-list">
-                <tr>
-                    <th>Sl No.</th>
-                    <th>Name/User ID</th>
-                    <th>Physics</th>
-                    <th>Chemistry</th>
-                    <th>Maths</th>
-                    <th>GK</th>
-                    <th>Total Marks</th>
-                    <th>Remark</th>
-                </tr>
         <?php 
 
         // $row[0]      SL no
@@ -44,40 +32,9 @@
         // $row[12]     exam status
             $i = 1;
             while($row = mysql_fetch_array($res)) {
-                echo "<tr>";
-                    echo "<td>".$i."</td>";  
-                    
-                    echo "<td>";
-                        echo $row[1]."<hr>".$row[2];
-                    echo "</td>";
-                    
-                    echo "<td>";
-                        echo $row[8]."<hr>".$row[4];
-                    echo "</td>";
-
-                    echo "<td>";
-                        echo $row[9]."<hr>".$row[5];
-                    echo "</td>";
-
-                    echo "<td>";
-                        echo $row[10]."<hr>".$row[6];
-                    echo "</td>";
-
-                    echo "<td>";
-                        echo $row[11]."<hr>".$row[7];
-                    echo "</td>";
-
-                    echo "<td>";
-                        echo ($row[8]+$row[9]+$row[10]+$row[11]);
-                    echo "</td>";
-
-                    echo "<td>";
-                    echo "</td>";
-                echo "</tr>";
-                $i++;
+                echo $row[1]."<br>";
             }
         ?>
-            </table>
         </div>
     </div>
 </body>
