@@ -48,10 +48,90 @@ html {
 /* Style for student-result.php */
 .result-container {
     width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .result-body-container {
     width: 100%;
     text-align: center;
     display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
+}
+
+/* Styling elements created in script.js */
+/* Whole div of one student record */
+.student {
+    display : flex;
+    width : 100%;
+    height: auto;
+    justify-content: space-around;
+    background-color: khaki;
+}
+.student div {
+    margin: auto;
+}
+.even {
+    background-color: khaki;
+}
+.odd{
+    background-color: rgb(235, 218, 70);
+}
+/* slno of every Student record */
+.slno {
+
+}
+/* Student name, ID of every Student record */
+.user-details {
+
+}
+/* Time div of every Student record */
+.time-details {
+    margin: auto;
+    width: 150px;
+    height: 100px;
+}
+/* Marks div of every Student record */
+.marks-details {
+    margin: auto;
+    width: 150px;
+    height: 100px;
+}
+/* Total Marks Div of every Student record */
+.total-details {
+
+}
+/* Exam status of every Student record */
+.exam-status {
+
+}
+.status-circle {
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+.canvasjs-chart-credit {
+    display: none;
+}
+
+.page-buttons {
+    width: 30% unset;
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+.fd-button {
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    border: 0;
+    background-color: yellowgreen;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: .6s;
+}
+.fd-button:hover {
+    transform: scale(1.1);
 }

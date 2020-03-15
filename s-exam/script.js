@@ -210,40 +210,46 @@ function finish() {
         if(xhr.readyState == 4 && xhr.status == 200) {
             var resObj = JSON.parse(xhr.responseText);
             console.log(resObj);
-            pushUserDataToDB(resObj);
+
+            //Push Values to Database
+            // pushUserDataToDB(resObj);
+
+            /* Instead of calling pushUserDataToDb add details to db 
+            using getMarks.php
+            Then refractor and rename getMarks.php to markUpdate.php
+            Then finally delete the below function
+            Why simple useless functions creating!!!! */
         }
     }
     xhr.send(user);
-    
-    //Push Values to Database
 
     //  Redirect to Exam Finish
     // window.location = "examFinish.php";
 }
 
-function pushUserDataToDB(obj) {
-    var x = "&user=" + user;
-    x += "&phytime=" + topicTime["physics"];
-    x += "&chemtime=" + topicTime["chemistry"];
-    x += "&mathtime=" + topicTime["maths"];
-    x += "&gktime=" + topicTime["gk"];
+// function pushUserDataToDB(obj) {
+//     var x = "&user=" + user;
+//     x += "&phytime=" + topicTime["physics"];
+//     x += "&chemtime=" + topicTime["chemistry"];
+//     x += "&mathtime=" + topicTime["maths"];
+//     x += "&gktime=" + topicTime["gk"];
 
-    x += "&phymark=" + parseInt(obj["physics"]);
-    x += "&chemmark=" + parseInt(obj["chemistry"]);
-    x += "&mathmark=" + parseInt(obj["maths"]);
-    x += "&gkmark=" + parseInt(obj["gk"]);
+//     x += "&phymark=" + parseInt(obj["physics"]);
+//     x += "&chemmark=" + parseInt(obj["chemistry"]);
+//     x += "&mathmark=" + parseInt(obj["maths"]);
+//     x += "&gkmark=" + parseInt(obj["gk"]);
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", "pushResult.php?"+x, true);
-    xhr.onreadystatechange = function() {
-        if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
-        }
-    }
-    xhr.send(x);
+//     var xhr = new XMLHttpRequest();
+//     xhr.open("GET", "pushResult.php?"+x, true);
+//     xhr.onreadystatechange = function() {
+//         if(xhr.readyState == 4 && xhr.status == 200) {
+//             console.log(xhr.responseText);
+//         }
+//     }
+//     xhr.send(x);
 
-    console.log(x);
-}
+//     console.log(x);
+// }
 
 
 var answer = null;
