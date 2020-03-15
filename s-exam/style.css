@@ -13,6 +13,20 @@
     margin-top: 10px;
 }
 
+.timer{
+    margin-left: 40%;
+    margin-right: 40%;
+    color: white;
+    background-color: #9ccc65;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+}
+@keyframes hobble {
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 .container {
     padding: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -79,6 +93,7 @@
     transition: 0.5s;
 }
 #option_target div:hover{
+    cursor: pointer;
     opacity: 0.9;
     font-weight: bold;
     background-color: rgba(255, 255, 255, 0.198);

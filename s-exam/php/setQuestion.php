@@ -5,33 +5,47 @@
     $topic = $_GET['topic'];
     $user = $_GET['user'];
     $table = $topic."_questions";
+
+    //  Set Question difficulty theme
+    //  Easy - 3, Average = 4, Hard = 3
+    $easy_question = 3; 
+    $avg_question = 4;
+    $hard_question = 3;
     
-    //  Fetch number of question in DB
-    $count_row = "SELECT COUNT(*) FROM $table";
-    $c = mysql_query($count_row);
-    $c = (int)mysql_fetch_array($c)[0];
-    
-    //Random Question No generator
-    $rand = range(1 , $c);
-    shuffle($rand);    
-    $rand = array_slice($rand, 0, $n);
+    $count_check = "SELECT COUNT(*) FROM $user WHERE topic='$topic'"; 
+    $count_check = mysql_query($count_check);
+    $count_check = (int)mysql_fetch_array($count_check)[0];
+    // echo $count_check;
+    if($count_check == 0) {
+        //  Fetch Question for each Difficulty
+        // echo " -- here";
+        questionFetchFromDB("easy", $table, $easy_question, $topic, $user, 0);
+        questionFetchFromDB("average", $table, $avg_question, $topic, $user, $easy_question);
+        questionFetchFromDB("hard", $table, $hard_question, $topic, $user, ($easy_question+$avg_question));
+    }
 
-    // for($i=0; $i<count($rand); $i++) {
-    //     echo "*";
-    //     echo $rand[$i]." ";
-    // }
-    // echo " $table $topic \n";
+    function questionFetchFromDB($difficulty, $table, $qCount, $topic, $user, $count) {
+        // Fetch the number of rows 
+        $fq = mysql_query("SELECT question, option1, option2, option3, option4, answer FROM $table WHERE difficulty='$difficulty'");
+        $c = (int)mysql_num_rows($fq);
 
-    for($i=0; $i<count($rand); $i++) {
-        $fetch_question = "SELECT question, option1, option2, option3, option4, answer FROM $table WHERE sl_no = ".$rand[$i];
-        $row = mysql_fetch_array(mysql_query($fetch_question));
-        // echo $fetch_question. "\n";
-        // echo "================\n";
+        $rand = range(1, $c);
+        shuffle($rand);
+        $rand = array_slice($rand, 0, $qCount);
 
-        $insert_user = 'INSERT INTO '.$user.' (sl_no, question, option1, option2, option3, option4, answer, topic) VALUES('.($i+1).', "'.$row[0].'","'.$row[1].'","'.$row[2].'","'.$row[3].'","'.$row[4].'","'.$row[5].'", "'.$topic.'")';
-        $con = mysql_query($insert_user);
-        // echo $insert_user. "\n";
-        // echo "================\n";
-        // echo "================\n";
+        $i=1;
+        while($row = mysql_fetch_array($fq)) {
+            if(in_array($i, $rand)) {
+                $iq = 'INSERT INTO '.$user.'(sl_no, question, option1, option2, option3, option4, answer, topic) VALUES('.(++$count).',"'.$row[0].'", "'.$row[1].'", "'.$row[2].'", "'.$row[3].'", "'.$row[4].'", "'.$row[5].'", "'.$topic.'")';
+                $conn = mysql_query($iq);
+
+                if(!$conn) {
+                    echo "$i th question not added\n";
+                    echo $row[0]."\n";
+                    echo "\n".$iq."\n\n\n";
+                }
+            }
+            $i++;
+        }
     }
 ?>

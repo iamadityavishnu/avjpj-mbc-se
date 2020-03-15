@@ -2,8 +2,13 @@ const questionNo = 10, topics = ["physics", "chemistry", "maths", "gk"];
 var questionArray = [], t_counter = 0;
 var user = "test", 
     currentTopic = "physics", 
-    currentQuestion = 1,
-    examDuration = timerDuration = 5, lap = examDuration;
+    currentQuestion = 1;
+
+//  Exam Time details
+var examDuration = timerDuration = 10, 
+    lap = examDuration, 
+    warnTime = 5;
+
 var arr = {};
 var topicTime = {
     physics: 0,
@@ -32,14 +37,20 @@ function startTimer(target, duration) {
 
         target.innerHTML = minutes + ":" + seconds;
 
+        if(timer <= warnTime) {
+            target.style.backgroundColor = "red";
+            target.style.animation = "hobble 1s infinite";
+        }
+
         //  Stop when count down ends
         if (timer-- < 0) {
             timer = duration;
             clearInterval(interval);
         }
-        timerDuration--;
+        
         if(timerDuration === 0) 
             finish();
+        timerDuration--;
     }, 1000);
 }
 
@@ -60,7 +71,7 @@ function createUserTable() {
             if(xhr.responseText != "1") {
                 // alert("Some Error has occured regarding your account.\n Please contact the institution");
                 // window.location = "http://localhost/avjpj-mbc-se/";
-                console.log("User DB Created");
+                console.log("User DB Repeatition problem");
             } 
             else {
                 console.log("- User DB Created");
