@@ -107,9 +107,11 @@ html {
 
 }
 .status-circle {
-    padding: 5px;
-    border: 1px solid black;
-    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid green;
+    background-color: green;
+    border-radius: 10px;
+    cursor: help;
 }
 .canvasjs-chart-credit {
     display: none;

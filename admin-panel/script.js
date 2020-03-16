@@ -82,7 +82,7 @@ function fetchList() {
             <tr>
                 <td> Total time </td>
                 <td> : </td>
-                <td> ${totalTime} </td>
+                <td> ${parseInt(totalTime / 60, 10)}m ${parseInt(totalTime % 60, 10)}s </td>
             </tr>
             <tr>
                 <td> Total marks </td>
@@ -93,6 +93,13 @@ function fetchList() {
         
         //  Exam Status Div
         temp.childNodes[5].innerHTML = `<div class="status-circle"></div>`;
+        if(studentList[i].examStatus == 1) {
+            temp.childNodes[5].childNodes[0].style.backgroundColor = "red";
+            temp.childNodes[5].childNodes[0].style.borderColor = "red";
+            temp.childNodes[5].childNodes[0].setAttribute("title", "Incomplete");
+        }
+        else 
+        temp.childNodes[5].childNodes[0].setAttribute("title", "Completed Exam")
 
         //Append the child
         // console.log(temp);
