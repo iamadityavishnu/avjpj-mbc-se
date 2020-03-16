@@ -78,14 +78,16 @@ html {
 .odd{
     background-color: rgb(235, 218, 70);
 }
-/* slno of every Student record */
+
+/* slno of every Student record
 .slno {
 
 }
-/* Student name, ID of every Student record */
+Student name, ID of every Student record
 .user-details {
 
-}
+} */
+
 /* Time div of every Student record */
 .time-details {
     margin: auto;
@@ -98,14 +100,15 @@ html {
     width: 150px;
     height: 100px;
 }
+
 /* Total Marks Div of every Student record */
-.total-details {
+/* .total-details {
 
 }
-/* Exam status of every Student record */
+Exam status of every Student record
 .exam-status {
 
-}
+} */
 .status-circle {
     padding: 10px;
     border: 1px solid green;
@@ -135,5 +138,53 @@ html {
     transition: .6s;
 }
 .fd-button:hover {
+    transform: scale(1.1);
+}
+
+/* Style for editQuestions.php */
+.question-container {
+    width: 100% auto;
+    padding: 20px;
+}
+.filter-container {
+    padding: 30px;
+    display: flex;
+    justify-content: space-around;
+}
+.topic-button {
+    width: 100px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(25, 195, 25);
+    color: white;
+    transition: .7s;
+    cursor: pointer;
+}
+.topic-button:hover {
+    transform: scale(1.1);
+}
+.topic-selected {
+    background-color: grey !important; 
+}
+
+.difficulty-options {
+    padding-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+.difficulty-options button {
+    padding: 5px;
+    border-radius: 5px;
+    border: 0;
+    color: white;
+    background-color: green;
+    cursor: pointer;
+    transition: .7s;
+}
+
+.difficulty-options button:hover {
     transform: scale(1.1);
 }
