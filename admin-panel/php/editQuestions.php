@@ -1,7 +1,7 @@
 <script>
-    var currentTopic = "physics", hardness = null;
+    var currentTopic = "physics", hardness = null, user="big_admin";
     var questionList = {};
-    var quesPerLoad = 10, pageNo = 1;
+    var questionsPerLoad = 10, pageNo = 1;
 
     var questionDivTemplate = document.createElement("DIV");
     questionDivTemplate.setAttribute("class", "question-div-container");
@@ -11,24 +11,27 @@
         options = document.createElement("DIV"),
         answer = document.createElement("DIV"),
         difficulty = document.createElement("DIV"),
-        enteredBy = document.createElement("DIV");
+        enteredBy = document.createElement("DIV"),
+        editBtn = document.createElement("DIV");
+
     slno.setAttribute("class", "q-slno");
 
     question.setAttribute("class", "q-question");
-    // question.setAttribute("onclick", "edit(this, this.parentNode.rowNo)");
     
     options.setAttribute("class", "q-options");
     
     answer.setAttribute("class", "q-answer");
     answer.setAttribute("id", "answer");
-    // answer.setAttribute("onclick", "editOptions(this)");
     
     difficulty.setAttribute("class", "q-difficulty");
     difficulty.setAttribute("id", "difficulty");
-    // difficulty.setAttribute("onclick", "editOptions(this)");
 
     enteredBy.setAttribute("class", "q-enteredby");
     
+    editBtn.setAttribute("class", "edit-btn");
+    editBtn.setAttribute("onclick", "edit(this.parentNode)");
+    editBtn.innerHTML = "Edit";
+
     var op1 = document.createElement("DIV"), 
         op2 = document.createElement("DIV"), 
         op3 = document.createElement("DIV"), 
@@ -50,6 +53,7 @@
     questionDivTemplate.appendChild(answer);
     questionDivTemplate.appendChild(difficulty);
     questionDivTemplate.appendChild(enteredBy);
+    questionDivTemplate.appendChild(editBtn);
 </script>
 
 <!DOCTYPE html>
@@ -58,9 +62,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Questions</title>
-    <link rel="stylesheet" href="../style.css?v=3">
+    <link rel="stylesheet" href="../style.css?v=4">
 </head>
 <body>
+    <div id="float-edit-container">
+        <div class="float-edit-container">
+            <!-- Make a hovering Div to edit -->
+        </div>
+        <div class="modal" id="modal">
+            <div class="edit-wrapper">
+                <div class="label-edit">Question : </div>
+                <div class="field-edit">
+                    <textarea name="question" id="question" cols="30" rows="4"></textarea>
+                </div>
+            </div>
+            <div class="edit-wrapper">
+                <div class="label-edit">Options : </div>
+                <div class="field-edit">
+                    A)&nbsp;<input type="text" name="option1" id="option1"><br>
+                    B)&nbsp;<input type="text" name="option2" id="option2"><br>
+                    C)&nbsp;<input type="text" name="option3" id="option3"><br>
+                    D)&nbsp;<input type="text" name="option4" id="option4"><br>
+                </div>
+            </div>
+            <div class="edit-wrapper">
+                <div class="label-edit">Answer : </div>
+                <div class="field-edit">
+                    <select name="answer" id="answer">
+                        <option value="a">A</option>
+                        <option value="b">B</option>
+                        <option value="c">C</option>
+                        <option value="d">D</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-wrapper">
+                <div class="label-edit">Difficulty : </div>
+                <div class="field-edit">
+                    <select name="difficulty" id="difficulty">
+                        <option value="easy">Easy</option>
+                        <option value="average">Average</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+            </div>
+            <div class="edit-btn-wrapper">
+                <input type="submit" value="Submit" onclick="updateQuestion()">
+                <input type="button" value="Cancel" onclick="hideModal()">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var modalOrigin = document.getElementById('modal');
+        var modal = {
+            question : document.getElementById('question'),
+            options : {
+                option1 : document.getElementById('option1'),
+                option2 : document.getElementById('option2'),
+                option3 : document.getElementById('option3'),
+                option4 : document.getElementById('option4')
+            },
+            answer : document.getElementById('answer'),
+            difficulty : document.getElementById('difficulty')
+        }
+    </script>
+    
     <div class="body-container">
         <div class="filter-container">
             <div id="physics">
@@ -97,6 +164,16 @@
                     <button onclick="selectTopic(this)">H</button>
                 </div>
             </div>
+        </div>
+
+        <div class="question-header">
+            <div class="question-list-heading q-slno">Sl No.</div>
+            <div class="question-list-heading q-question">Question</div>
+            <div class="question-list-heading q-options">Options</div>
+            <div class="question-list-heading q-answer">Answer</div>
+            <div class="question-list-heading q-difficulty">Difficulty</div>
+            <div class="question-list-heading q-enteredby">Entered By</div>
+            <div class="question-list-heading">Edit Values</div>
         </div>
 
         <div class="question-container" id="question-list-target"></div>
@@ -174,14 +251,15 @@
         xhr.send(x);
     }
 
+    // questionsPerLoad, pageNo
+
     function displayList() {
         var target = document.getElementById('question-list-target');
         target.innerHTML = "";
 
-        console.log(questionList, questionList.length);
-        for(let x=0; x<questionList.length; x++) {
-            var div = questionDivTemplate.cloneNode(true);
-            div.setAttribute("row-no", questionList[x].id);
+        for(let x=(questionsPerLoad*(pageNo-1)); (x<questionList.length && x<(pageNo*questionsPerLoad)); x++) {
+            let div = questionDivTemplate.cloneNode(true);
+            div.setAttribute("id", questionList[x].slno);
 
             //  Sl No.
             div.childNodes[0].innerHTML = questionList[x].slno;
@@ -190,13 +268,26 @@
             div.childNodes[1].innerHTML = questionList[x].question;
 
             //  Options
-            div.childNodes[2].childNodes[0].innerHTML = questionList[x].option1;
-            div.childNodes[2].childNodes[1].innerHTML = questionList[x].option2;
-            div.childNodes[2].childNodes[2].innerHTML = questionList[x].option3;
-            div.childNodes[2].childNodes[3].innerHTML = questionList[x].option4;
+            div.childNodes[2].childNodes[0].innerHTML = "A) " + questionList[x].option1;
+            div.childNodes[2].childNodes[1].innerHTML = "B) " + questionList[x].option2;
+            div.childNodes[2].childNodes[2].innerHTML = "C) " + questionList[x].option3;
+            div.childNodes[2].childNodes[3].innerHTML = "D) " + questionList[x].option4;
 
             //  Answer
-            div.childNodes[3].innerHTML = questionList[x].answer;
+            switch(questionList[x].answer) {
+                case 'a': 
+                    div.childNodes[3].innerHTML = questionList[x].answer + ". " + questionList[x].option1;      
+                    break;
+                case 'b': 
+                    div.childNodes[3].innerHTML = questionList[x].answer + ". " + questionList[x].option2;
+                    break;
+                case 'c': 
+                    div.childNodes[3].innerHTML = questionList[x].answer + ". " + questionList[x].option3;
+                    break;
+                case 'd': 
+                    div.childNodes[3].innerHTML = questionList[x].answer + ". " + questionList[x].option4;
+                    break;
+            }
 
             //  Difficulty
             div.childNodes[4].innerHTML = questionList[x].difficulty;
@@ -204,21 +295,87 @@
             //  Entered By
             div.childNodes[5].innerHTML = questionList[x].entered;
 
-            console.log(div);
-
             target.appendChild(div);
         }
-        console.log("Select - " + currentTopic + ", " + hardness);
     }
 
     function pageChange(str) {
+        if(str === '+') {
+            if(pageNo < Math.ceil(questionList.length/questionsPerLoad))
+                pageNo++;
+                displayList();
+        }
+        else {
+            if(pageNo > 1) {
+                pageNo--;
+                displayList();
+            }
+        }
+    }
+
+    function hideModal() {
+        document.getElementById('modal').style.animation = "popOut .3s ease-out";
+        setTimeout(function() {
+            document.getElementById('float-edit-container').style.display="none";
+        }, 290);
+        
+    }
+    var editQ;
+    function edit(origin) {
+        var target = document.getElementById('modal');
+
+        //  Style & Animation
+        document.getElementById('float-edit-container').style.display = "flex";
+        document.getElementById('modal').style.animation = "popIn .3s ease-in";
+
+        var id = parseInt(origin.id)-1;
+        editQ = id;
+        console.log(id);
+        console.log(questionList[id]);
+        console.log(origin);
+        modal.question.value = questionList[id].question;
+        modal.options.option1.value = questionList[id].option1;
+        modal.options.option2.value = questionList[id].option2;
+        modal.options.option3.value = questionList[id].option3;
+        modal.options.option4.value = questionList[id].option4;
+        modal.answer.value = questionList[id].answer;
+        modal.difficulty.value = questionList[id].difficulty;
+    }
+
+    function updateQuestion() {
+        let question = document.getElementById('question').value, 
+            option1 = document.getElementById('option1').value, 
+            option2 = document.getElementById('option2').value,
+            option3 = document.getElementById('option3').value,
+            option4 = document.getElementById('option4').value, 
+            answer = document.getElementById('answer').value,
+            difficulty = document.getElementById('difficulty').value;
+
             
-    }
-
-    function edit(ele) {
-
-    }
-    function editOptions(ele) {
-
-    }
+        var x = "&id="+questionList[editQ].id;
+        x += "&question="+question;
+        x += "&option1="+option1;
+        x += "&option2="+option2;
+        x += "&option3="+option3;
+        x += "&option4="+option4;
+        x += "&answer="+answer;
+        x += "&difficulty="+difficulty;
+        x += "&user="+user;
+        x += "&topic="+currentTopic;
+        
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'updateQuestion.php?'+x, true);
+        xhr.onreadystatechange = function() {
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                if(xhr.responseText == "1") {
+                    fetchQuestionList();
+                    hideModal();
+                }
+                else {
+                    alert("ERROR! Question Not Updated! \n Check if any of the field contains double-inverted commas(\")")
+                }
+            }
+        }
+        xhr.send(x);
+   }
 </script>
