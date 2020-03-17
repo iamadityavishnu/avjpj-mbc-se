@@ -188,3 +188,32 @@ Exam status of every Student record
 .difficulty-options button:hover {
     transform: scale(1.1);
 }
+
+.question-div-container {
+    display: flex;
+    justify-content: center;
+    padding : 10px 0px;
+}
+
+.q-slno {
+    width: 7%;
+}
+.q-question {
+    width: 40%;
+}
+.q-options {
+    width: 15%;
+}
+.q-options div {
+    padding: 5px 0px;
+}
+.q-answer {
+    width: 10%;
+    text-align: center;
+}
+.q-difficulty {
+    width: 10%;
+}
+.q-enteredby {
+    width: 10%;
+}
