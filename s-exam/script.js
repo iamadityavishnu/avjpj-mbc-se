@@ -1,11 +1,11 @@
-const questionNo = 10, topics = ["physics", "chemistry", "maths", "gk"];
+const questionNo = 20, topics = ["physics", "chemistry", "maths", "gk"];
 var questionArray = [], t_counter = 0;
 var user = "test", 
     currentTopic = "physics", 
     currentQuestion = 1;
 
 //  Exam Time details
-var examDuration = timerDuration = 10, 
+var examDuration = timerDuration = 1800, 
     lap = examDuration, 
     warnTime = 5;
 
@@ -38,7 +38,7 @@ function startTimer(target, duration) {
         target.innerHTML = minutes + ":" + seconds;
 
         if(timer <= warnTime) {
-            target.style.backgroundColor = "red";
+            target.style.color = "red";
             target.style.animation = "hobble 1s infinite";
         }
 

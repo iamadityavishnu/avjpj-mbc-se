@@ -5,14 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../style.css?v=6">
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-    <div class="header">
-        <h1> Mar Baselios Christian College of Engg. & Technology </h1>
-        <h3> Online Scholarship Exam </h3>
-    </div>
-
+    
     <div id="timer" class="timer"></div>
 
     <div class="container">
@@ -25,35 +22,34 @@
             <div class="line-next"></div>
             <div class="topic">GK</div>
         </div>
-        
-        <div class="question-list" id="question-list">
+        <div class="question-wrapper">
+            <div class="question-list" id="question-list"></div>
             
-        </div>
-        
-        <div class="question-container">
-            <div class="question" id="question-target">
-                Q. Question Here?
-            </div>
-            <div class="option-container">
-                <div id="option_target">
-                    <div onclick="this.childNodes[1].checked = true">
-                        <input type="radio" name="ans" id="ans" value="a">
-                        <span id="op1-target">Option 1</span>
-                    </div>
-                    <div onclick="this.childNodes[1].checked = true">
-                        <input type="radio" name="ans" id="ans" value="b">
-                        <span id="op2-target">Option 2</span>
-                    </div>     
-                    <div onclick="this.childNodes[1].checked = true">
-                        <input type="radio" name="ans" id="ans" value="c">
-                        <span id="op3-target">Option 3</span>
-                    </div>    
-                    <div onclick="this.childNodes[1].checked = true">
-                        <input type="radio" name="ans" id="ans" value="d">
-                        <span id="op4-target">Option 4</span>
+            <div class="question-container">
+                <div class="question" id="question-target">
+                    Q. Question Here?
+                </div>
+                <div class="option-container">
+                    <div id="option_target">
+                        <div onclick="this.childNodes[1].checked = true">
+                            <input type="radio" name="ans" id="ans" value="a">
+                            <span id="op1-target">Option 1</span>
+                        </div>
+                        <div onclick="this.childNodes[1].checked = true">
+                            <input type="radio" name="ans" id="ans" value="b">
+                            <span id="op2-target">Option 2</span>
+                        </div>     
+                        <div onclick="this.childNodes[1].checked = true">
+                            <input type="radio" name="ans" id="ans" value="c">
+                            <span id="op3-target">Option 3</span>
+                        </div>    
+                        <div onclick="this.childNodes[1].checked = true">
+                            <input type="radio" name="ans" id="ans" value="d">
+                            <span id="op4-target">Option 4</span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </div>  
         </div>
         
         <div id="submit">
