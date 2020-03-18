@@ -1,3 +1,4 @@
+/* Style for student-result.php */
 *{
     padding: 0;
     margin: 0;
@@ -17,6 +18,7 @@ html {
 }
 .body-container {
     width: 100% auto;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -194,12 +196,103 @@ Exam status of every Student record
     justify-content: center;
     padding : 10px 0px;
 }
+#float-edit-container {
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.float-edit-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    margin: auto;
+    position: fixed;
+    background-color: black;
+    opacity: 0.75;
+    z-index: 2;
+}
 
+/* Modal Styles */
+.modal {
+    background-color: white;
+    width: 500px;
+    height: 400px;
+    position: fixed;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px;
+    transition: .5s;
+}
+/* Pop-in & Pop-out animations */
+@keyframes popIn {
+    0% { transform: scale(.3); }
+    70% { transform: scale(1.1); }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); } 
+}
+@keyframes popOut {
+    0% { transform: scale(1); }
+    20% { transform: scale(1.1); }
+    30% { transform: scale(1.1); }
+    100% { transform: scale(0); } 
+}
+
+.edit-wrapper {
+    display: flex;
+}
+.edit-btn-wrapper {
+    width: 300px;
+    display: flex;
+    justify-content: space-around;
+}
+.edit-btn-wrapper input {
+    transition: .5s;
+    padding: 10px;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: rgb(216, 210, 210);
+}
+.edit-btn-wrapper input[type=button]:hover {
+    background-color: rgb(209, 43, 43);
+    color: white;
+    transform: scale(1.1);
+}
+.edit-btn-wrapper input[type=submit]:hover {
+    background-color: rgb(39, 206, 39);
+    color: white;
+    transform: scale(1.1);
+}
+.label-edit {
+    width: 100px;
+}
+.field-edit {
+    width: 250px;
+}
+
+.question-header {
+    display: flex;
+}
+.question-list-heading {
+    /* Add do not add or change width attribute of this class */
+    /* All other attribute should have !important at end, Example - margin*/
+    margin: auto !important;
+}
 .q-slno {
     width: 7%;
+    margin: auto;
 }
 .q-question {
     width: 40%;
+    margin: auto;
+    padding: 10px;
 }
 .q-options {
     width: 15%;
@@ -210,10 +303,24 @@ Exam status of every Student record
 .q-answer {
     width: 10%;
     text-align: center;
+    margin: auto;
 }
 .q-difficulty {
-    width: 10%;
+    width: 5%;
+    padding: 10px;
+    margin: auto;
 }
 .q-enteredby {
     width: 10%;
+    padding: 10px;
+    margin: auto;
+}
+.edit-btn {
+    margin: auto;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 0;
+    background-color: rgb(73, 106, 255);
+    color: white;
+    cursor: pointer;
 }
