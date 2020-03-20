@@ -6,12 +6,19 @@
 html {
     scroll-behavior: smooth;
 }
+img {
+    z-index: -1;
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+    position: fixed;
+
+}
 .container {
     width: 100vw;
     height: 100vh;
     padding: 0;
     margin: 0;
-    background: url('https://mbcpeermade.com/userfiles/poster/1b97d750aa514ce1830cb183dab59107.jpg');
+    font-family: 'Roboto', sans-serif;
 }
 .header {
     height: 100px;
@@ -22,13 +29,13 @@ html {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-top: 7%;
 }
 .dashboard {
     display: flex;
     width: 100%;
     margin: auto;
     justify-content: flex-start;
-    padding-top: 100px;
 }
 .dashboard div {
     width: 250px;
@@ -37,14 +44,24 @@ html {
     align-items: center;
     margin: auto;
     display: flex;
-    background-color: black;
+    font-weight: 300;
+    font-size: 22px;
     color: white;
-    opacity: .7;
-    transition: .7s;
+    background-color: #32D4D6;
+    border: 1px solid #32D4D6;
+    border-radius: 15%;
+    transition: .5s;
+    outline: none;
 }
 .dashboard div:hover {
     cursor: pointer;
-    opacity: .3;
+    background-color: transparent !important;
+    border: 2px solid #32d4d6;
+    color: #32d4d6 !important;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 24px;
+    touch-action: cross-slide-x;
 }
 
 /* Style for student-result.php */

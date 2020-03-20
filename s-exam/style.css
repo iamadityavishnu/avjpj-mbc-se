@@ -35,11 +35,13 @@
     margin: auto;
     width: 70vw;
     border: 1px solid #D5DBDB;
+    border-radius: 20px 20px 20px 20px;
 }
 .question {
     background-color: #fff;
     color: gray;
     border: 1px solid #D5DBDB;
+    border-radius: 20px 20px 0px 0px;
     font-size: 18px;
     padding: 10px;
     padding-left: 30px;
@@ -48,13 +50,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 18vw;
+    width: 16vw;
     height: 255px;
-    padding: 10px 10px 10px 40px;
+    padding: 10px 10px 10px 20px;
     margin: 10px;
     align-items: center;
     overflow: auto;
     border: 1px solid #D5DBDB;
+    border-radius: 20px 20px 20px 20px;
 }
 .q-circle {
     padding: 5px;
@@ -89,6 +92,7 @@
 .option-container {
     background-color: #fff;
     padding: 10px;
+    border-radius: 0px 0px 20px 20px;
 }
 #option_target div {
     display: flex;
@@ -169,7 +173,7 @@
     outline: none;
 }
 #submit input:hover {
-    background-color: #32d4d6;  !important;
+    background-color: #32d4d6 !important;
     color: white !important;
     border: 1px solid #32d4d6;
     cursor: pointer;
