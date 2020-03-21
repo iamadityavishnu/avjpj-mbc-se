@@ -9,7 +9,17 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php 
+        include '../../dbConnect.php';
+        include '../../session.php';
+
+        $update_status = "UPDATE student_list SET exam_status=1 WHERE user_id='$user_id'";
+        // echo mysql_query($update_status);
+
+    ?>
+    <script>
+        var user = "<?php echo $user_id; ?>"; 
+    </script>
     <div id="timer" class="timer"></div>
 
     <div class="container">

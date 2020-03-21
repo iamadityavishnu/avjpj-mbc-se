@@ -6,6 +6,11 @@
     <title>Congrats</title>
 </head>
 <body>
+    <?php 
+        include '../../session.php';
+
+        session_destroy();
+    ?>
     <h1> Congrats, You submission have been Registered </h1>
     <h3> We will contact you soon </h3>
 </body>

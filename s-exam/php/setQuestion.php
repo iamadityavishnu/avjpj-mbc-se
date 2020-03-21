@@ -6,11 +6,10 @@
     $user = $_GET['user'];
     $table = $topic."_questions";
 
-    //  Set Question difficulty theme
-    //  Easy - 3, Average = 4, Hard = 3
-    $easy_question = 3; 
-    $avg_question = 4;
-    $hard_question = 3;
+    //  Set Question difficulty theme #diffTheme
+    $easy_question = 6; 
+    $avg_question = 8;
+    $hard_question = 6;
     
     $count_check = "SELECT COUNT(*) FROM $user WHERE topic='$topic'"; 
     $count_check = mysql_query($count_check);

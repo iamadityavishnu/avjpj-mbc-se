@@ -1,11 +1,38 @@
+//  Number of Questions here #qno
 const questionNo = 20, topics = ["physics", "chemistry", "maths", "gk"];
-var questionArray = [], t_counter = 0;
-var user = "test", 
-    currentTopic = "physics", 
+var t_counter = 0;
+
+var currentTopic, currentQuestion;
+
+if(!localStorage.getItem("topic")) {
+    var questionArray = [];
+    // console.log("No local storage item");
+    questionArray.length = 0;
+    currentTopic = "physics"; 
     currentQuestion = 1;
 
-//  Exam Time details
-var examDuration = timerDuration = 1800, 
+    localStorage.setItem("topic", currentTopic);
+    localStorage.setItem("t-counter", t_counter);
+    localStorage.setItem("q-no", currentQuestion);
+
+    for(let c=1; c<=questionNo; c++)
+        questionArray.push(c);
+    localStorage.setItem("q-array", JSON.stringify(questionArray));
+}
+else {
+    // console.log("Local storage item present");
+    t_counter = parseInt(localStorage.getItem("t-counter"));
+    currentTopic = localStorage.getItem("topic");
+    currentQuestion = parseInt(localStorage.getItem("q-no"));
+    questionArray = JSON.parse(localStorage.getItem("q-array"));
+    // console.log(questionArray);
+}
+
+console.log(currentTopic, currentQuestion, "t_count="+t_counter);
+
+//  Exam Time details #timer
+var examDuration =  10,
+    timerDuration = examDuration,
     lap = examDuration, 
     warnTime = 5;
 
@@ -21,8 +48,16 @@ initEvnironment();
 
 window.onload = function() {
     var target = document.getElementById('timer');
+    if(!localStorage.getItem('clock')) 
+        localStorage.setItem('clock', timerDuration);
+    else
+        timerDuration = parseInt(localStorage.getItem('clock'));
 
-    startTimer(target, examDuration);
+    if(timerDuration <= 0)
+        this.finish();
+
+    console.log(timerDuration);    
+    startTimer(target, timerDuration);
 }
 
 function startTimer(target, duration) {
@@ -36,6 +71,7 @@ function startTimer(target, duration) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         target.innerHTML = minutes + ":" + seconds;
+        console.log("timer"+timer, "td"+timerDuration);
 
         if(timer <= warnTime) {
             target.style.color = "red";
@@ -50,14 +86,32 @@ function startTimer(target, duration) {
         
         if(timerDuration === 0) 
             finish();
+
         timerDuration--;
+        localStorage.setItem('clock', timerDuration);
     }, 1000);
 }
 
 function initEvnironment() {
     questionList(questionNo);
-    document.getElementsByClassName("topic")[0].classList.add("topic-selected");
-    document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
+    document.getElementsByClassName("topic")[t_counter].classList.add("topic-selected");
+    document.getElementsByClassName("q-circle")[currentQuestion-1].classList.add("question-selected");
+
+    console.log(questionArray, "Init env setup");
+    for(let n=1; n<=questionNo; n++) {
+        if((n-1)<4 && (n-1)<t_counter) 
+            document.getElementsByClassName("topic")[n-1].classList.add('category-done');
+        if(!questionArray.includes(n)) 
+            document.getElementsByClassName("q-circle")[n-1].classList.add('question-done');
+
+    }
+    if(t_counter >= 3) {
+        //  Change Next Category Button to "Finish"
+        var btn = document.getElementById('d-button');
+        btn.setAttribute("onclick", "finish()");
+        btn.setAttribute("value", "Finish");
+
+    }
     createUserTable();
     setQuestion(questionNo, currentTopic);
     // deleteUserTable();
@@ -68,14 +122,10 @@ function createUserTable() {
     xhr.open('GET', 'createUserDb.php?&user='+user, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            if(xhr.responseText != "1") {
-                // alert("Some Error has occured regarding your account.\n Please contact the institution");
-                // window.location = "http://localhost/avjpj-mbc-se/";
+            if(xhr.responseText != "1") 
                 console.log("User DB Repeatition problem");
-            } 
-            else {
+            else 
                 console.log("- User DB Created");
-            }
         }
     }
     xhr.send(user);
@@ -87,7 +137,7 @@ function setQuestion(n, topic) {
     xhr.open('GET', 'setQuestion.php?'+x, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log("- Questions Set!");
+            // console.log("- Questions Set!");
             fetchQuestion();
         }
     }
@@ -127,14 +177,13 @@ function displayQuestion(arr) {
 
 function questionList(n) {
     const target = document.getElementById('question-list');
-    questionArray.length = 0;
     for(let i=1; i<=n; i++) {
-        questionArray.push(i);
         let div = document.createElement("DIV");
         div.innerHTML = i;
         div.classList.add("q-circle");
         div.setAttribute("onclick", "selectQuestion(this)")
         target.appendChild(div);
+
         if(i<questionNo) {
             let line = document.createElement("DIV");
             line.classList.add("line-next");
@@ -149,13 +198,15 @@ function selectQuestion(event) {
     event.classList.add("question-selected");
     currentQuestion = parseInt(event.innerHTML);
 
+    localStorage.setItem("q-no", currentQuestion);
+    console.log(localStorage.getItem("qno"));
+
     //  Clear marked Question
     var a = document.getElementsByName('ans');
     for(let i=0; i<4; i++) {
         a[i].checked = false;
     }
 
-    // console.log(currentQuestion);
     fetchQuestion();
 
     //  May Need to be changed later based on Question number
@@ -163,35 +214,47 @@ function selectQuestion(event) {
 }
 
 function nextTopic() {  
-    //  Mark time for each topic
-    topicTime[currentTopic] = lap - timerDuration;
-    lap = timerDuration; 
-    // console.log(topicTime);
+    var conf = window.confirm("You cannot return back to the current Category later! \nDo you still want to continue?");
+    if(conf) {
+        //  Mark time for each topic
+        topicTime[currentTopic] = lap - timerDuration;
+        lap = timerDuration; 
 
-    //  Change Style of Topic Selected
-    document.getElementsByClassName('topic')[t_counter].classList.remove('topic-selected');
-    t_counter++;
-    document.getElementsByClassName('topic')[t_counter].classList.add('topic-selected');
+        //  Change Style of Topic Selected
+        document.getElementsByClassName('topic')[t_counter].classList.remove('topic-selected');
+        document.getElementsByClassName('topic')[t_counter].classList.add('category-done');
+        t_counter++;
+        localStorage.setItem("t-counter", t_counter);
 
-    //  Reset Question Lists
-    document.getElementById('question-list').innerHTML = "";
-    questionList(questionNo);
-    currentQuestion = 1;
-    document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
+        document.getElementsByClassName('topic')[t_counter].classList.add('topic-selected');
 
-    //  Change current topic & Fetch Questions
-    currentTopic = topics[t_counter];
-    // console.log(currentTopic, t_counter);
-    setQuestion(questionNo, currentTopic);
-    // console.log(t_counter);
-    if(t_counter >= 3) {
-        //  Change Next Category Button to "Finish"
-        var btn = document.getElementById('d-button');
-        // btn.removeAttribute("onclick");
-        btn.setAttribute("onclick", "finish()");
-        btn.setAttribute("value", "Finish");
-        // console.log(btn);
-        // console.log("Finish");
+        //  Reset Question Lists
+        document.getElementById('question-list').innerHTML = "";
+        questionList(questionNo);
+        currentQuestion = 1;
+        localStorage.setItem("q-no", currentQuestion);
+        document.getElementsByClassName("q-circle")[0].classList.add("question-selected");
+
+        //  Change current topic & Fetch Questions
+        currentTopic = topics[t_counter];
+        localStorage.setItem("topic", currentTopic);
+
+        questionArray.length = 0;
+        for(let c=1; c<=questionNo; c++)
+            questionArray.push(c);
+
+        localStorage["q-array"] = JSON.stringify(questionArray);
+        console.log("\n\n",JSON.parse(localStorage.getItem("q-array")));
+
+        setQuestion(questionNo, currentTopic);
+
+        if(t_counter >= 3) {
+            //  Change Next Category Button to "Finish"
+            var btn = document.getElementById('d-button');
+            btn.setAttribute("onclick", "finish()");
+            btn.setAttribute("value", "Finish");
+
+        }
     }
 }
 
@@ -201,56 +264,26 @@ function finish() {
     topicTime[currentTopic] = lap - timerDuration;
     clearInterval(interval);
 
-    console.log(topicTime);
+    // console.log(topicTime, "time for topics");
+
+    var x = "&user=" + user;
+    x += "&phytime=" + topicTime["physics"];
+    x += "&chemtime=" + topicTime["chemistry"];
+    x += "&mathtime=" + topicTime["maths"];
+    x += "&gktime=" + topicTime["gk"];
     
     //  Evaluate Score
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "getMarks.php?&user="+user, true);
+    xhr.open("GET", "markUpdate.php?"+x, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            var resObj = JSON.parse(xhr.responseText);
-            console.log(resObj);
-
-            //Push Values to Database
-            // pushUserDataToDB(resObj);
-
-            /* Instead of calling pushUserDataToDb add details to db 
-            using getMarks.php
-            Then refractor and rename getMarks.php to markUpdate.php
-            Then finally delete the below function
-            Why simple useless functions creating!!!! */
+            // console.log(xhr.responseText);
+            localStorage.clear();
+            window.location = "examFinish.php";
         }
     }
-    xhr.send(user);
-
-    //  Redirect to Exam Finish
-    // window.location = "examFinish.php";
+    xhr.send(x);
 }
-
-// function pushUserDataToDB(obj) {
-//     var x = "&user=" + user;
-//     x += "&phytime=" + topicTime["physics"];
-//     x += "&chemtime=" + topicTime["chemistry"];
-//     x += "&mathtime=" + topicTime["maths"];
-//     x += "&gktime=" + topicTime["gk"];
-
-//     x += "&phymark=" + parseInt(obj["physics"]);
-//     x += "&chemmark=" + parseInt(obj["chemistry"]);
-//     x += "&mathmark=" + parseInt(obj["maths"]);
-//     x += "&gkmark=" + parseInt(obj["gk"]);
-
-//     var xhr = new XMLHttpRequest();
-//     xhr.open("GET", "pushResult.php?"+x, true);
-//     xhr.onreadystatechange = function() {
-//         if(xhr.readyState == 4 && xhr.status == 200) {
-//             console.log(xhr.responseText);
-//         }
-//     }
-//     xhr.send(x);
-
-//     console.log(x);
-// }
-
 
 var answer = null;
 
@@ -279,16 +312,18 @@ function finalizeAnswer(answer) {
     var index = questionArray.indexOf(currentQuestion);
     var nextQ;
 
-    console.log("index="+index);
+    // console.log("index="+index);
     questionArray.splice(questionArray.indexOf(currentQuestion),1);
-    console.log(questionArray);
+    // console.log(questionArray);
+    localStorage["q-array"] = JSON.stringify(questionArray);
+    console.log(localStorage["q-array"], "ans submit");
 
     if(document.getElementsByClassName('q-circle')[questionArray[index]] == undefined) {
         nextQ = document.getElementsByClassName('q-circle')[(questionArray[0]-1)];
     }
     else   
         nextQ = document.getElementsByClassName('q-circle')[(questionArray[index]-1)];
-    console.log(nextQ);
+    // console.log(nextQ);
 
 
     var xhr = new XMLHttpRequest();
