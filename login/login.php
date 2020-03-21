@@ -11,20 +11,64 @@
         // echo "Login Successfull<br><br>";
         // echo "Checking for exam status <br><br>";
         
-        if($row[3] == 0) {
+        if($row[3] == 1) {
 ?>
-    <!-- Write an html saying
-            - You have completed the exam 
-            - Please contact administrator if it wasn't you 
-            - Contact email or phone
+        <style>
+            body {
+                padding: 0;
+                margin: 0;
+                height: 100vh;
+            }
+            .info-container {
+                width: 60vw;
+                height: 70vh;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                margin: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                align-items: center;
+            }
+            .complete-info {
+                font-size: 30px;
+                text-align: center;
+            }
+            .contact-container {
+                display: flex;
+            }
+            .contact-container div{
+                margin: 10px;
+            }
+            .return-btn {
 
-            Return to login Button
-        -->
-        - You have completed the exam <br>
-            - Please contact administrator if it wasn't you <br>
-            - Contact email or phone <br>
-
-            <button onclick="window.location='../index.html'">return to login</button>
+            }
+            .return-btn button {
+                padding: 10px 20px;
+                text-decoration: none;
+                cursor: pointer;
+                border-radius: 10px;
+                color: white;
+                background-color: green;
+            }
+            a {
+                text-decoration: none;
+                color: white;
+            }
+        </style>
+        <div class="info-container">
+            <div class="complete-info">
+                It seems you have completed the exam. <br>
+                Please contact the administrator if there was any fault
+            </div>
+            <div class="contact-container">
+                <div class="contact-label">Contact:</div>
+                <div class="contact-info">+91 9876543210 <br>mbc@gmail.com</div>
+            </div>
+            <div class="return-btn">
+                <button class="btn" onclick="window.location = '../index.html'"> Return to Login </button>
+                <button class="btn"><a href="http://mbcpeermade.com/">More About MBC</a></button>
+            </div>
+        </div>
 <?php
         }
         else {
