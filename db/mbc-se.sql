@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2020 at 03:59 PM
+-- Generation Time: Mar 23, 2020 at 08:51 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `mbc-se`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin_details`
+--
+
+CREATE TABLE IF NOT EXISTS `admin_details` (
+  `sl_no` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) NOT NULL,
+  `user_id` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  PRIMARY KEY (`sl_no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `admin_details`
+--
+
+INSERT INTO `admin_details` (`sl_no`, `username`, `user_id`, `password`) VALUES
+(1, 'Admin User', 'admin', 'admin123'),
+(2, 'Test Admin', 'test', 'testadmin');
 
 -- --------------------------------------------------------
 
@@ -209,13 +231,13 @@ CREATE TABLE IF NOT EXISTS `physics_questions` (
 --
 
 INSERT INTO `physics_questions` (`sl_no`, `question`, `option1`, `option2`, `option3`, `option4`, `answer`, `difficulty`, `entered_by`) VALUES
-(1, 'The absorption of ink by blotting paper involves', 'viscosity of ink', 'capillary action phenomenon', 'diffusion of ink through the blotting', 'siphon action', 'b', 'easy', 'Test_user'),
+(1, 'The absorption of ink by blotting paper involves', 'viscosity of ink', 'capillary action phenomenon', 'diffusion of ink through the blotting', 'siphon action', 'b', 'easy', 'big_admin'),
 (2, 'Nuclear sizes are expressed in a unit named', 'fermi', 'angstrom', 'newton', 'tesla', 'a', 'easy', 'Test_user'),
-(3, 'Light year is a unit of', 'time', 'distance', 'light', 'intensity of light', 'b', 'easy', 'Test_user'),
+(3, 'Light year is a unit of', 'time', 'distance', 'light', 'intensity of light', 'b', 'easy', 'big_admin'),
 (4, 'Light from the Sun reaches us in nearly', '2 minutes', '4 minutes', '8 minutes', '16 minutes', 'c', 'average', 'Test_user'),
 (5, 'Pa(Pascal) is the unit for', 'thrust', 'pressure', 'frequency', 'conductivity', 'b', 'average', 'Test_user'),
-(6, 'Let a thin capillary tube be replaced with another tube of insufficient length then, we find water', 'will overflow', 'depressed', 'change its meniscus', 'will not rise', 'd', 'average', 'Test_user'),
-(7, 'Pick out the scalar quantity', 'pressure', 'force', 'velocity', 'acceleration', 'a', 'average', 'Test_user'),
+(6, 'Let a thin capillary tube be replaced with another tube of insufficient length then, we find water', 'will overflow', 'depressed', 'change its meniscus', 'will not rise', 'd', 'average', 'big_admin'),
+(7, 'Pick out the scalar quantity', 'pressure', 'force', 'velocity', 'acceleration', 'a', 'average', 'big_admin'),
 (8, 'out of the following, which is not emitted by radioactive substance?', 'Electrons', 'Electromagnetic radiations', 'Alpha particles', 'Neutrons', 'd', 'hard', 'Test_user'),
 (9, 'Sound waves in air are', 'transverse', 'longitudinal', 'electromagnetic', 'polarised', 'b', 'hard', 'Test_user'),
 (10, 'Magnetism at the centre of a bar magnet is', 'minimum', 'maximum', 'zero', 'minimum or maximum', 'c', 'hard', 'Test_user'),
@@ -262,7 +284,7 @@ CREATE TABLE IF NOT EXISTS `student_list` (
   `gk_marks` int(11) DEFAULT NULL,
   `exam_status` int(11) NOT NULL,
   PRIMARY KEY (`sl_no`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `student_list`
@@ -273,15 +295,16 @@ INSERT INTO `student_list` (`sl_no`, `name`, `user_id`, `password`, `time_physic
 (2, 'test no 2', 'test2', 'test2', 20, 26, 82, 76, 8, 9, 8, 6, 2),
 (3, 'test no 3', 'test3', 'test3', 72, 81, 76, 88, 7, 8, 9, 3, 2),
 (4, 'test no 4', 'test4', 'test4', 76, 87, 65, 65, 8, 8, 9, 7, 1),
-(5, 'test no 5', 'test5', 'test5', 63, 54, 76, 56, 7, 8, 6, 9, 2);
+(5, 'test no 5', 'test5', 'test5', 63, 54, 76, 56, 7, 8, 6, 9, 2),
+(6, 'test no 6', 'test6', 'test6', 13, 0, 0, 0, 1, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `test`
+-- Table structure for table `test6`
 --
 
-CREATE TABLE IF NOT EXISTS `test` (
+CREATE TABLE IF NOT EXISTS `test6` (
   `sl_no` int(11) DEFAULT NULL,
   `question` varchar(300) NOT NULL,
   `option1` varchar(50) NOT NULL,
@@ -294,30 +317,90 @@ CREATE TABLE IF NOT EXISTS `test` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `test`
+-- Dumping data for table `test6`
 --
 
-INSERT INTO `test` (`sl_no`, `question`, `option1`, `option2`, `option3`, `option4`, `answer`, `result`, `topic`) VALUES
-(1, 'The absorption of ink by blotting paper involves', 'viscosity of ink', 'capillary action phenomenon', 'diffusion of ink through the blotting', 'siphon action', 'b', NULL, 'physics'),
-(2, 'Nuclear sizes are expressed in a unit named', 'fermi', 'angstrom', 'newton', 'tesla', 'a', NULL, 'physics'),
-(3, 'Lux is the SI unit of:', 'luminous efficiency', 'intensity of illumination', 'luminous flux', 'luminous intensity', 'a', NULL, 'physics'),
-(4, 'Light from the Sun reaches us in nearly', '2 minutes', '4 minutes', '8 minutes', '16 minutes', 'c', NULL, 'physics'),
-(5, 'Pa(Pascal) is the unit for', 'thrust', 'pressure', 'frequency', 'conductivity', 'b', NULL, 'physics'),
-(6, 'The manifestation of band structure in solids is due to:', 'Pauliâ€™s exclusion principle', 'Heisenberg uncertainty priniciple', 'Bohrâ€™s correspondence principle', 'Boltzmann law', 'b', NULL, 'physics'),
-(7, 'Region without free electrons and holes in a p-n junction is', 'p-region', 'n-region', 'depletion region', 'none of these', 'c', NULL, 'physics'),
-(8, 'Sound waves in air are', 'transverse', 'longitudinal', 'electromagnetic', 'polarised', 'b', NULL, 'physics'),
-(9, 'A particle of mass 100 g is thrown vertically upwards with a speed of 5 m/s. the work done by the force of gravity during the time the particle goes up is:', '-0.5 J', '0.5 J', '-1.25 J', '1.25 J', 'c', NULL, 'physics'),
-(10, 'Needles N1, N2 and N3 are made of a ferromagnetic, a paramagnetic and a diamagnetic substance respectively. A magnet when brought close to them will:', 'attract N1 and N2 strongly but repel N3', 'attract all three of them', 'attract N1 strongly, N2 weakly and repel N3 weakly', 'attract N1 strongly, but repel N2 and N3 weakly', 'c', NULL, 'physics'),
-(1, 'The nucleus of an atom consists of', 'electrons and neutrons', 'electrons and protons', 'protons and neutrons', 'All of the above', 'c', NULL, 'chemistry'),
-(2, 'The reagent with which both acetaldehyde and acetone react easily is', 'Grignardâ€™s reagent', 'Fehlingâ€™s reagent', 'Schiffâ€™s reagent', 'Tollenâ€™s reagent', 'b', NULL, 'chemistry'),
-(3, 'How many chiral compounds are possible on monochlorination of 2-methyl butane?', '4', '2', '6', '8', 'a', NULL, 'chemistry'),
-(4, 'The metallurgical process in which a metal is obtained in a fused state is called', 'smelting', 'roasting', 'calcinations', 'froth floatation', 'a', NULL, 'chemistry'),
-(5, 'Which of the following undergoes nucleophilic substitution exclusively by SN 1 mechanism?', 'Ethyl chloride', 'Benzyl chloride', 'Chlorobenzene', 'Isopropyl chloride', 'a', NULL, 'chemistry'),
-(6, 'The increasing order of nucleophilicity would be', 'Iâ€“ < Clâ€“ < Brâ€“', 'Clâ€“ < Brâ€“ < Iâ€“', 'Brâ€“ < Clâ€“ < Fâ€“', 'Iâ€“ < Brâ€“ < Clâ€“', 'a', NULL, 'chemistry'),
-(7, 'The synthesis of alkyl fluoride is best accomplished by', 'Swartz reaction', 'Finkelstein reaction', 'Free radical fluorination', 'Sandmeyers reaction', 'b', NULL, 'chemistry'),
-(8, 'The heat required to raise the temperature of body by 1 K is called', 'thermal capacity', 'specific heat', 'water equivalent', 'None of the above', 'b', NULL, 'chemistry'),
-(9, 'The heating of phenyl methyl ether with HI produces', 'Phenol', 'Iodobenzene', 'Benzene', 'Ethyl chloride', 'b', NULL, 'chemistry'),
-(10, 'Monochlorination of toluene in sunlight followed by hydrolysis with aq. NaOH yields.', 'm-Cresol', 'o-Cresol', '2, 4-Dihydroxytoluene', 'Benzyl alcohol', 'a', NULL, 'chemistry');
+INSERT INTO `test6` (`sl_no`, `question`, `option1`, `option2`, `option3`, `option4`, `answer`, `result`, `topic`) VALUES
+(1, 'The absorption of ink by blotting paper involves', 'viscosity of ink', 'capillary action phenomenon', 'diffusion of ink through the blotting', 'siphon action', 'b', 0, 'physics'),
+(2, 'A thermocouple is made from two metals, Antimony and Bismuth. If one junction of the couple is kept hot and the other is kept cold then, an electric current will:', 'flow from Antimony to Bismuth at the hot junction', 'flow from Antimony to Bismuth at the cold junction', 'flow from Bismuth to Antimony at the cold junction', 'not flow through the thermocouple', 'a', 0, 'physics'),
+(3, 'Lux is the SI unit of:', 'luminous efficiency', 'intensity of illumination', 'luminous flux', 'luminous intensity', 'a', 0, 'physics'),
+(4, 'Pa(Pascal) is the unit for:', 'pressure', 'thrust', 'frequency', 'conductivity', 'b', 0, 'physics'),
+(5, 'Find the maximum velocity for the overturn of a car moving on a circular track of radius 100 m. The co-efficient of friction between the road and tyre is 0.2:', '140 m/s', '0.14 m/s', '1.4 km/s', '14 m/s', 'd', 0, 'physics'),
+(6, 'Light travels at the fastest speed in:', 'water', 'glass', 'hydrogen', 'vacuum', 'd', 1, 'physics'),
+(7, 'Light from the Sun reaches us in nearly', '2 minutes', '4 minutes', '8 minutes', '16 minutes', 'c', NULL, 'physics'),
+(8, 'Pa(Pascal) is the unit for', 'thrust', 'pressure', 'frequency', 'conductivity', 'b', 0, 'physics'),
+(9, 'Let a thin capillary tube be replaced with another tube of insufficient length then, we find water', 'will overflow', 'depressed', 'change its meniscus', 'will not rise', 'd', NULL, 'physics'),
+(10, 'Pick out the scalar quantity', 'pressure', 'force', 'velocity', 'acceleration', 'a', 0, 'physics'),
+(11, ' Which of the following has maximum penetrating power?', 'Microwaves', 'Ultraviolet radiation', 'Î³-rays', 'Radio waves', 'c', NULL, 'physics'),
+(12, 'Let the magnetic field on earth be modelled by that of a point magnetic dipole at the centre of earth. The angle of dip at a point on the geographical equator', 'can be zero at specific points.', 'is always zero.', 'cannot be positive or negative.', 'is not bounded.', 'b', NULL, 'physics'),
+(13, 'The manifestation of band structure in solids is due to:', 'Pauliâ€™s exclusion principle', 'Heisenberg uncertainty priniciple', 'Bohrâ€™s correspondence principle', 'Boltzmann law', 'b', NULL, 'physics'),
+(14, 'Region without free electrons and holes in a p-n junction is', 'p-region', 'n-region', 'depletion region', 'none of these', 'c', NULL, 'physics'),
+(15, 'Sound waves in air are', 'transverse', 'longitudinal', 'electromagnetic', 'polarised', 'b', NULL, 'physics'),
+(16, 'The dimension of magnetic field in M, L, T and C (Coulomb) is given as:', 'MT2Câˆ’2', 'MLTâˆ’1Câˆ’1', 'MTâˆ’1Câˆ’1', 'MTâˆ’2Câˆ’1', 'c', NULL, 'physics'),
+(17, 'Consider a uniform square plate of side â€˜aâ€™ and mass â€˜mâ€™. The moment of inertia of this plate about an axis perpendicular to its plane and passing through one of its corners is:', '2/3 ma2', '3/4 ma2', '4/6 ma2', '1/5 ma2', 'b', NULL, 'physics'),
+(18, 'An experiment is performed to find the refractive index of glass using a travelling microscope. In this experiment distance are measured by:', 'a standard laboratory scale', 'a vernier scale provided on the microscope', 'a meter scale provided on the microscope', 'a screw gauage provided on the microscope', 'a', NULL, 'physics'),
+(19, 'A particle of mass 100 g is thrown vertically upwards with a speed of 5 m/s. the work done by the force of gravity during the time the particle goes up is:', '-0.5 J', '0.5 J', '-1.25 J', '1.25 J', 'c', NULL, 'physics'),
+(20, 'Needles N1, N2 and N3 are made of a ferromagnetic, a paramagnetic and a diamagnetic substance respectively. A magnet when brought close to them will:', 'attract N1 and N2 strongly but repel N3', 'attract all three of them', 'attract N1 strongly, N2 weakly and repel N3 weakly', 'attract N1 strongly, but repel N2 and N3 weakly', 'c', 0, 'physics'),
+(1, 'The most electronegative element among the following is', 'sodium', 'bromine', 'fluorine', 'oxygen', 'c', 0, 'chemistry'),
+(2, 'The product formed by the reaction of an aldehyde with a primary amine is', 'Aromatic acid', 'Carboxylic acid', 'SchifTs base', 'Ketone', 'c', NULL, 'chemistry'),
+(3, 'The correct order of increasing acidic strength is ____________.', 'Ethanol < Phenol < Chloroacetic acid < Acetic acid', 'Phenol < Ethanol < Chloroacetic acid < Acetic acid', 'Ethanol < Phenol < Acetic acid < Chloroacetic acid', 'Chloroacetic acid < Acetic acid < Phenol < Ethanol', 'c', NULL, 'chemistry'),
+(4, 'How many chiral compounds are possible on monochlorination of 2-methyl butane?', '4', '2', '6', '8', 'a', 0, 'chemistry'),
+(5, 'Chloropicrin is formed by the reaction of', 'nitric acid on chlorobenzene.', 'steam on carbon tetrachloride.', 'chlorine on picric acid.', 'nitric acid on chloroform.', 'd', NULL, 'chemistry'),
+(6, 'Fitting reaction can be used to prepare', 'Acetophenon', 'Toluene', 'Diphenyl', 'Chlorobenzene', 'c', 1, 'chemistry'),
+(7, 'The metal used to recover copper from a solution of copper sulphate is', 'Na', 'Ag', 'Hg', 'Fe', 'd', NULL, 'chemistry'),
+(8, 'The number of d-electrons in Fe2  (Z = 26) is not equal to that of', 'p-electrons in Ne(Z = 10)', 's-electrons in Mg(Z = 12)', 'd-electrons in Fe(Z = 26)', 'p-electrons in CI(Z = 17)', 'd', NULL, 'chemistry'),
+(9, 'The gas present in the stratosphere which filters out some of the sun''s ultraviolet light and provides an effective shield against radiation damage to living things is', 'oxygen', 'helium', 'ozone', 'methane', 'b', NULL, 'chemistry'),
+(10, 'Which of the following undergoes nucleophilic substitution exclusively by SN 1 mechanism?', 'Ethyl chloride', 'Benzyl chloride', 'Chlorobenzene', 'Isopropyl chloride', 'a', NULL, 'chemistry'),
+(11, 'The increasing order of nucleophilicity would be', 'Iâ€“ < Clâ€“ < Brâ€“', 'Clâ€“ < Brâ€“ < Iâ€“', 'Brâ€“ < Clâ€“ < Fâ€“', 'Iâ€“ < Brâ€“ < Clâ€“', 'a', NULL, 'chemistry'),
+(12, 'Which of the following is most reactive towards SN1 reaction?', 'C6H5CH2Br', 'C6H5C(CH3)C6H5Br', 'C6H5CH(C6H5)Br', 'C6H5CH(CH3)Br', 'a', NULL, 'chemistry'),
+(13, 'Which of the following has ester linkages?', 'Bakelite', 'Nylon', 'Terylene', 'PVC', 'c', NULL, 'chemistry'),
+(14, 'Which of the following is not soluble in NaHCO3?', 'Benzoic acid', '2, 4, 6-Trinitrophenol', 'o-Nitrophenol', 'Benzene sulphonic acid', 'c', NULL, 'chemistry'),
+(15, 'The nucleus of a hydrogen atom consists of', '1 proton   2 neutron', '1 proton only', '1 neutron only', '1 electron only', 'a', NULL, 'chemistry'),
+(16, 'The heat required to raise the temperature of body by 1 K is called', 'thermal capacity', 'specific heat', 'water equivalent', 'None of the above', 'b', NULL, 'chemistry'),
+(17, 'The heating of phenyl methyl ether with HI produces', 'Phenol', 'Iodobenzene', 'Benzene', 'Ethyl chloride', 'b', NULL, 'chemistry'),
+(18, 'Monochlorination of toluene in sunlight followed by hydrolysis with aq. NaOH yields.', 'm-Cresol', 'o-Cresol', '2, 4-Dihydroxytoluene', 'Benzyl alcohol', 'a', NULL, 'chemistry'),
+(19, 'How many alcohols with molecular formula C4H10O are chiral in nature?', '2', '1', '3', '4', 'a', NULL, 'chemistry'),
+(20, 'CH3CH2OH can be converted into CH3CHO by:', 'treatment with LiAlH4', 'catalytic hydrogenation', 'treatment with pyridinium chlorochromate', 'treatment with KMnO4', 'c', NULL, 'chemistry'),
+(1, ' I am a number. I have 7 in the ones place. I am less than 80 but greater than 70. What is my number?', '73', '71', '75', '77', 'd', 0, 'maths'),
+(2, 'If 6 is 50% of a number, what is the number?', '11', '10', '12', '13', 'c', 0, 'maths'),
+(3, 'The equations of y-axis in space are', 'x = 0, z = 0', 'x = 0, y = 0', 'y = 0, z = 0', 'y = 0', 'b', NULL, 'maths'),
+(4, 'Three balls are drawn from a bag containing 2 red and 5 black balls, if the random variable X represents the number of red balls drawn, then X can take values', '0, 1, 2,3', '0, 1, 2', '0', '1,2', 'a', 0, 'maths'),
+(5, 'Area bounded by the curve y = sin x and the x-axis between x = 0 and x = 2Ï€ is', '0 sq units', '2 sq units', '3 sq units', '4 sq units', 'a', 0, 'maths'),
+(6, ' If P(A âˆ© B) = 70% and P(B) = 85%, then P(A/B) is equal to', '17/20', '14/17', '7/8', '1/8', 'a', NULL, 'maths'),
+(7, ' (9321   5406   1001) Ã· (498   929   660) =', '4.5', '3.5', '16.5', '7.5', 'd', NULL, 'maths'),
+(8, 'Which least number should be added to 2600 to make it a perfect square?', '39', '3', '1', '5', 'c', NULL, 'maths'),
+(9, 'How many months are equal to 45 days?', '1 Â¼ months', '1 Â½ months', 'Â¼ months', '2 Â¼ months', 'a', NULL, 'maths'),
+(10, 'The value of 1.07 Ã— 65   1.07 Ã— 26   1.07 Ã— 9 is', '10.7', '10.73', '10.70', '107', 'd', NULL, 'maths'),
+(11, 'âˆ«cotÂ²x dx equals to', 'cot x   x   C', 'cot x â€“ x   C', '-cot x   x   C', '-cot x â€“ x   C', 'd', NULL, 'maths'),
+(12, 'If âˆ«secÂ²(7 â€“ 4x)dx = a tan (7 â€“ 4x)   C, then value of a is', '4', '7', '-3', '-1/4', 'd', NULL, 'maths'),
+(13, 'The differentiation of sinx with respect to cosx is ?', '-tanx', 'tanx', 'cotx', '-cotx', 'd', NULL, 'maths'),
+(14, 'Write the distance of the point (3, â€“ 5, 12) from the x-axis.', '11 units', '9 units', '13 units', '12 units', 'c', NULL, 'maths'),
+(15, 'How much water is added to 750 g milk to get a 1-kilogram mixture of liquid?', '0.25 kg', '2.5 kg', '20.5 kg', '25.0 kg', 'b', NULL, 'maths'),
+(16, 'If 5 boys take 7 hours to pack 35 cartoons, then how many boys can pack 65 cartoons in 3 hours?', '39', '26', '45', 'None of these', 'd', NULL, 'maths'),
+(17, 'The total revenue in â‚¹ received from the sale of x units of an article is given by R(x) = 3xÂ²   36x   5. The marginal revenue when x = 15 is (in â‚¹ )', '116', '126', '96', '90', 'a', NULL, 'maths'),
+(18, 'The equation of the normal to the curve y = sin x at (0, 0) is', 'y = 0', 'x = 0', 'x   y = 0', 'x â€“ y = 0', 'c', NULL, 'maths'),
+(19, 'The line y = x   1 is a tangent to the curve y2 = 4x at the point', '(1, 2)', '(-1, 2)', '(1, -2)', '(2, 1)', 'b', NULL, 'maths'),
+(20, 'If the curves ay   x2 = 7 and x3 = y cut orthogonally at (1,1), then the value of a is', '0', '1', '-6', '6', 'd', NULL, 'maths'),
+(1, 'Who Resigns as a President of The World Bank?', 'Kristalina Georgieva', 'Joaquim Levy', 'David Rubenstein', 'Jim Yong Kim', 'd', NULL, 'gk'),
+(2, 'Which country topped the Global Climate Risk Index 2020?', 'Japan', 'Philippines', 'Germany', 'Madagascar', 'b', NULL, 'gk'),
+(3, 'In which place the Indian Army has successfully test-fired two Spike long-range anti-tank missiles?', 'Pokhran, Rajasthan', 'Jodhpur, Rajasthan', 'Pune, Maharashtra', 'Mhow, Madhya Pradesh', 'd', 0, 'gk'),
+(4, 'Name the person who was also known as Deshbandhu.  ', 'G.K. Gokhale', 'S. Radhakrishnan', 'Chittaranjan Das', 'Madan Mohan Malviya', 'c', 0, 'gk'),
+(5, 'Which of the following is NOT the language enshrined in the eighth schedule of the Indian Constitution, as the language of the state?', 'Kashmiri', 'Nepali', 'English', 'Konkani', 'c', NULL, 'gk'),
+(6, 'Geet Govind is a famous creation of', 'Kalidas', 'Bana Bhatt', 'Jayadev', 'Bharat Muni', 'c', NULL, 'gk'),
+(7, 'Which moon of Jupiter has been found to have the presence of water vapor?', 'Deimos', 'Europa', 'Ariel', 'Titania', 'a', NULL, 'gk'),
+(8, 'Who is the Indian Air Force chief?', 'Birender Singh Dhanoa', 'S. Prabhakaran', 'Amit Dev', 'V. R. Chaudhari', 'b', 0, 'gk'),
+(9, 'In May 2019, India delivered a pair of Mi-24 attack helicopters to which country?', 'Bangladesh', 'Afghanistan', 'Nepal', 'Qatar', 'a', NULL, 'gk'),
+(10, 'According to the Constitution of India, which of the following is NOT one of the main organs of the Government?', 'Bureaucracy', 'Legislature', 'Executive', 'Judiciary', 'b', NULL, 'gk'),
+(11, 'In which year did the Cabinet Mission arrived in India?', '1943', '1942', '1945', '1946', 'd', NULL, 'gk'),
+(12, 'Mein Kampf is authored by', 'Karl Marx', 'Napoleon Bonaparte', 'Adolf Hitler', 'Benito Mussolini', 'c', NULL, 'gk'),
+(13, 'Which of the following is the largest and the deepest ocean of the world?', 'Atlantic', 'Arctic', 'Pacific', 'Indian', 'c', NULL, 'gk'),
+(14, 'Which Indian state has the least literacy rate?', 'Rajasthan', 'Bihar', 'Arunachal Pradesh', 'Orissa', 'a', NULL, 'gk'),
+(15, 'Bharat Ratna and Padma Vibhushan awards in India were instituted in the year', '1968', '1958', '1964', '1954', 'd', NULL, 'gk'),
+(16, 'Name the player who won the ''Player of the Tournament'' award in ICC Cricket World Cup 2019', 'Kane Williamson', 'Rohit Sharma ', 'Shakib Al Hasan', 'Jaspreet Bumrah', 'b', NULL, 'gk'),
+(17, 'Topographical map of India is approved by', 'Geographical Survey of India', 'Archaeological Survey of India', 'Surveyor General of India', 'None of these', 'c', NULL, 'gk'),
+(18, 'This country is known as the Sugar Bowl of the World, Identify it from the given options.', 'Cuba', 'Brazil', 'Mexico', 'Algeria', 'b', NULL, 'gk'),
+(19, 'Who is the ex-officio chairman of the Planning Commission of India?', 'Finance Minister of India', 'President of India', 'Prime Minister of India', 'Vice-President of India', 'c', NULL, 'gk'),
+(20, 'National Science Day is observed on', 'February 28', 'January 4', 'March 11', 'August 5', 'd', NULL, 'gk');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
