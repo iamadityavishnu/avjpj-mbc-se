@@ -14,9 +14,10 @@
     </script>
     <?php 
         include '../../dbConnect.php';
+        include 'adminSession.php';
 
         $res = mysql_query("SELECT * FROM student_list WHERE exam_status>0");
-
+    
         $noRows = mysql_num_rows($res);
         // echo $noRows;
         while($row = mysql_fetch_array($res)) {

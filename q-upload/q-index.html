@@ -20,6 +20,18 @@
         </style>
     </head>
     <body>
+        <script>
+            var adminxhr = new XMLHttpRequest();
+            xhr.open('GET', '../admin-panel/php/adminSession.php', true);
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 4 && xhr.status == 200) {
+                    if(xhr.responseText == "0") {
+                        window.location = "../admin-panel/";
+                    }
+                }
+            }
+            xhr.send();
+        </script>
         <div class="container">
             <div class="header">
                 <div id="left-div">

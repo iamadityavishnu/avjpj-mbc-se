@@ -1,3 +1,5 @@
+<?php include 'adminSession.php'; ?>
+
 <script>
     var currentTopic = "physics", hardness = null, user="big_admin";
     var questionList = {};
