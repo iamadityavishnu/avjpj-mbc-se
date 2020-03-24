@@ -8,6 +8,8 @@
 
     if(!($row = mysql_fetch_array($ses_sql))) {
         header('Location: ../');
-        echo "0";
+        echo json_encode(["0",$user_id]);
     }
+    else    
+    echo json_encode(["1",$user_id]);
 ?>

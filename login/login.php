@@ -18,6 +18,10 @@
                 padding: 0;
                 margin: 0;
                 height: 100vh;
+                background: url("https://images.unsplash.com/photo-1489844097929-c8d5b91c456e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80");
+                background-size: cover;
+                background-attachment: fixed;
+                background-repeat: no-repeat;
             }
             .info-container {
                 width: 60vw;

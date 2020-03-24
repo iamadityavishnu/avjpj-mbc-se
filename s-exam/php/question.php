@@ -13,7 +13,7 @@
         include '../../dbConnect.php';
         include '../../session.php';
 
-        $update_status = "UPDATE student_list SET exam_status=1 WHERE user_id='$user_id'";
+        $update_status = mysql_query("UPDATE student_list SET exam_status=1 WHERE user_id='$user_id'");
     ?>
     <script>
         var user = "<?php echo $user_id; ?>"; 

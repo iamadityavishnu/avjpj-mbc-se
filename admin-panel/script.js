@@ -105,7 +105,6 @@ function fetchList() {
         // console.log(temp);
         target.appendChild(temp);  
     }
-    console.log("==============");
 }
 
 function createChart(i, thing, target) {

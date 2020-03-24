@@ -2,13 +2,23 @@
     margin: 0;
     padding: 0;
 }
+body {
+    background: url('https://wallpaperaccess.com/full/345207.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
 .container {
-    padding: 10px;
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
 }
 .header {
-    width: 100%;
+    width: 100% auto;
     height: auto;
     display: flex;
+    background-color: rgba(0, 0, 0, 0.698);
+    padding: 20px 40px;
 }
 .header img {
     height: 50px;
@@ -21,7 +31,6 @@
     width: 60%;
     font-size: 25px;
     font-weight: bold;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 #right-div {
     display: flex;
@@ -30,7 +39,8 @@
     justify-content: flex-end;
     align-items: center;
     font-size: 20px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif !important;
 }
 
 .body-container {
@@ -41,6 +51,11 @@
     flex-direction: column; 
     justify-content: space-around;
     padding-left: 50px;
+    font-family: 'Open Sans', sans-serif ;
+    font-family: 'Roboto Condensed', sans-serif ;
+    font-family: 'Baloo Da 2', cursive ;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
 }
 .body-container div {
     margin-left: 20px;
@@ -65,6 +80,7 @@ input[type=button] {
     color: white;
     font-weight: bold;
     transition: .7s;
+    margin-top: 10px;
 }
 input[type=button]:hover {
     background-color: green;
@@ -91,5 +107,14 @@ textarea {
     padding: 5px;
 }
 .left-td {
+    text-align: right;
+}
+.query-class {
+    width: fit-content;
+    border: 2px solid white;
+    padding: 20px;
+    border-radius: 20px;
+    font-size: 20px;
     text-align: center;
+    margin: 10px auto;
 }

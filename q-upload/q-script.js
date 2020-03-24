@@ -37,14 +37,21 @@ function submit() {
                 //console.log("XHR-Status = " + xhr.responseText);
                 var arr = JSON.parse(xhr.responseText);
                 let query = document.getElementById("query"), color = "black";
-                if(arr[1] === true)
+                var text;
+                console.log(arr);
+                if(arr === true) {
                     color = "green";
-                else
+                    text = "Question Added";
+                    clearField();
+                }
+                else {
                     color = "red";
+                    text = "Problem while adding the question to DB";
+                    text += "<br> Please remove any \"(Double inverted commas in any field)"
+                }
                 query.style.borderColor = query.style.color = color;
-                query.innerHTML=arr[0];
+                query.innerHTML=text;
                 //alert('Question Added!');
-                clearField();
             }
         }
         xhr.send();

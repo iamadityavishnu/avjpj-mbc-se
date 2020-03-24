@@ -185,6 +185,9 @@
 }
 
 /* Style for question.php */
+.rules {
+    padding: 30px;
+}
 .q-container {
     background: url("https://mbcpeermade.com/userfiles/poster/1b97d750aa514ce1830cb183dab59107.jpg");
     background-attachment: fixed;
@@ -198,10 +201,14 @@
 .q-head {
     width: 100% auto;
     text-align: center;
+    background-color: rgba(34, 32, 32, 0.603);
     margin: 60px 0px 50px 0px;
     font-size: 50px;
     font-weight: 750;
     font-family: 'Cinzel', serif;
+    box-shadow: 0px 0px 60px black;
+    padding: 20px;
+    border-radius: 20px;
 }   
 .start-field {
     width: 60%;

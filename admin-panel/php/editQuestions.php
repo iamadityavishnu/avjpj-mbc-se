@@ -1,7 +1,13 @@
-<?php include 'adminSession.php'; ?>
-
+<div id="ses-dets">
+    <?php include 'adminSession.php' ?>
+</div>
 <script>
-    var currentTopic = "physics", hardness = null, user="big_admin";
+    document.getElementById("ses-dets").style.display = "none";
+    var aray = JSON.parse(document.getElementById("ses-dets").innerHTML);
+    console.log(aray);
+    var user = aray[1];
+
+    var currentTopic = "physics", hardness = null;
     var questionList = {};
     var questionsPerLoad = 10, pageNo = 1;
 
@@ -38,10 +44,6 @@
         op2 = document.createElement("DIV"), 
         op3 = document.createElement("DIV"), 
         op4 = document.createElement("DIV");
-    // op1.setAttribute("onclick", "edit(this)");
-    // op2.setAttribute("onclick", "edit(this)");
-    // op3.setAttribute("onclick", "edit(this)");
-    // op4.setAttribute("onclick", "edit(this)");
 
     options.appendChild(op1);
     options.appendChild(op2);
@@ -64,7 +66,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Questions</title>
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Da+2&family=Open+Sans&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: url("https://www.signoffsemi.com/wp-content/uploads/2017/02/CEOhDl.jpg");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: white;
+        }
+    </style>
 </head>
 <body>
     <div id="float-edit-container">
@@ -129,8 +142,16 @@
             difficulty : document.getElementById('difficulty')
         }
     </script>
-    
-    <div class="body-container">
+    <div class="q-body-container">
+        <div class="mbc-header-logo">
+            <div>
+                <img src="../../img/logo/mbc-logo-expanded.png" alt="mbc-logo" id="mbc-logo">
+            </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center">
+                <i class="material-icons" style="font-size:36px">person</i>
+                <span id='user-name'> </span>
+            </div>
+        </div>
         <div class="filter-container">
             <div id="physics">
                 <button id="physics-btn" class="topic-button topic-selected" onclick="selectTopic(this)"> Physics </button>
@@ -167,7 +188,7 @@
                 </div>
             </div>
         </div>
-
+        <hr>
         <div class="question-header">
             <div class="question-list-heading q-slno">Sl No.</div>
             <div class="question-list-heading q-question">Question</div>
@@ -177,7 +198,7 @@
             <div class="question-list-heading q-enteredby">Entered By</div>
             <div class="question-list-heading">Edit Values</div>
         </div>
-
+        <hr>
         <div class="question-container" id="question-list-target"></div>
 
         <div class="page-buttons">
@@ -189,6 +210,7 @@
 </html>
 
 <script>
+    document.getElementById('user-name').innerHTML = user;
     fetchQuestionList();
 
     function selectTopic(event) {

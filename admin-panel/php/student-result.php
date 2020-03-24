@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
+    
     <link rel="stylesheet" href="../style.css?v=4">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&family=Baloo+Da+2&family=Open+Sans&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background: url("https://www.northatlantic-islands.com/fileadmin/template/content/images/bg/img_main.jpg");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: black;
+            overflow-x: hidden;
+            font-family: 'Baloo Da 2', cursive;
+            font-family: 'Open Sans', sans-serif;
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-family: 'Baloo Chettan 2', cursive;
+        }
+    </style>
 </head>
 <body>
     <script>
@@ -14,8 +33,12 @@
     </script>
     <?php 
         include '../../dbConnect.php';
-        include 'adminSession.php';
-
+    ?>   
+        <script>
+            var notaneed = <?php include 'adminSession.php'; ?> ;
+            console.log(notaneed[1]);
+        </script> 
+    <?php
         $res = mysql_query("SELECT * FROM student_list WHERE exam_status>0");
     
         $noRows = mysql_num_rows($res);
@@ -48,7 +71,15 @@
     <?php } ?>
 
     <div class="result-container">
-        <div class="result-header"></div>
+        <div class="mbc-header-logo">
+            <div>
+                <img src="../../img/logo/mbc-logo-expanded.png" alt="mbc-logo" id="mbc-logo">
+            </div>
+            <div style="display: flex; justify-content: flex-end; align-items: center">
+                <i class="material-icons" style="font-size:36px">person</i>
+                <span id='user-name'> </span>
+            </div>
+        </div>
         <div class="result-body-container" id="result-list-target">
         </div>
 
@@ -61,3 +92,6 @@
 </html>
 
 <script src="../script.js?v=4"></script>
+<script>
+    document.getElementById('user-name').innerHTML = notaneed[1];
+</script>

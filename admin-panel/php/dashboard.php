@@ -7,13 +7,15 @@
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
-<body>
-    <?php include 'adminSession.php' ?>
-    <img src="http://mbcpeermade.com/userfiles/poster/59a7487994344d69931e69e79fd9abbc.jpg">
+<body style="overflow-y: hidden">
+    <script>
+        var user = <?php include 'adminSession.php' ?>[1];
+        console.log(user);
+    </script>
+    <div class="bg-image"></div>
     <div class="container">
         <div class="header">
-            <div class="mbc-logo"></div>
-            <div class="user"></div>
+            <img src="../../img/logo/mbc-logo-expanded.png" alt="mbc-logo" id="mbc-logo">
         </div>
         <div class="body-container">
             <div class="dashboard">
