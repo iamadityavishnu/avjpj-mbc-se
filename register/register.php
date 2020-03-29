@@ -11,6 +11,12 @@
 
     if($var_sql) 
         header("Location: register_complete.php");
-
-    // Email ID is primary and needs to be checked when tey register
+    else {
+?>
+    <script>
+        alert("Email already Exists. Please contact college Administrator");
+        window.location = "index.html";
+    </script>
+<?php
+    }
 ?>
