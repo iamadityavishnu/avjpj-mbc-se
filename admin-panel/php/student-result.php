@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Results</title>
     
-    <link rel="stylesheet" href="../style.css?v=4">
+    <link rel="stylesheet" href="../css/student-result-style.css?v=4">
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Chettan+2:wght@600&family=Baloo+Da+2&family=Open+Sans&family=Roboto&family=Roboto+Condensed&display=swap" rel="stylesheet">
