@@ -49,22 +49,22 @@
             var noStudents = <?php echo $noRows; ?>;
             student = {
                 name : "<?php echo $row[1]; ?>",
-                userID : "<?php echo $row[2]; ?>",
+                userID : "<?php echo $row[3]; ?>",
                 time : {
-                    physics : <?php echo $row[4]; ?>,
-                    chemistry : <?php echo $row[5]; ?>,
-                    maths : <?php echo $row[6]; ?>,
-                    gk : <?php echo $row[7]; ?>
+                    physics : <?php echo $row[5]; ?>,
+                    chemistry : <?php echo $row[6]; ?>,
+                    maths : <?php echo $row[7]; ?>,
+                    gk : <?php echo $row[8]; ?>
                 },
-                totalTime : <?php echo ($row[4]+$row[5]+$row[6]+$row[7]) ?>,
+                totalTime : <?php echo ($row[5]+$row[6]+$row[7]+$row[8]) ?>,
                 marks : {
-                    physics : <?php echo $row[8]; ?>,
-                    chemistry : <?php echo $row[9]; ?>,
-                    maths : <?php echo $row[10]; ?>,
-                    gk : <?php echo $row[11]; ?>
+                    physics : <?php echo $row[9]; ?>,
+                    chemistry : <?php echo $row[10]; ?>,
+                    maths : <?php echo $row[11]; ?>,
+                    gk : <?php echo $row[12]; ?>
                 },
-                totalMarks : <?php echo ($row[8]+$row[9]+$row[10]+$row[11]) ?>,
-                examStatus : <?php echo $row[12]; ?>
+                totalMarks : <?php echo ($row[9]+$row[10]+$row[11]+$row[12]) ?>,
+                examStatus : <?php echo $row[13]; ?>
             };
             studentList.push(student);
         </script>
@@ -91,7 +91,7 @@
 </body>
 </html>
 
-<script src="../script.js?v=4"></script>
+<script src="../script.js?v=4" defer></script>
 <script>
     document.getElementById('user-name').innerHTML = notaneed[1];
 </script>
