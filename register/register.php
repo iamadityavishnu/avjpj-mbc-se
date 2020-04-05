@@ -4,8 +4,10 @@
     $name = $_POST['name'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    echo $phone;
 
     $var_sql = "INSERT INTO student_details(name, email, phone) VALUES('$name', '$email', $phone)";
+    // echo $var_sql;
     $var_sql = mysql_query($var_sql);
     echo $var_sql;
 
