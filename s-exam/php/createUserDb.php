@@ -3,7 +3,7 @@
 
     $user = $_GET['user'];
 
-    $var_sql = "CREATE TABLE $user(
+    $var_sql = "CREATE TABLE `$user`(
         sl_no INT, 
         question varchar(300) NOT NULL, 
         option1 varchar(50) NOT NULL, 
@@ -14,6 +14,7 @@
         result int, 
         topic varchar(10))";
         
+        echo $var_sql;
     $conn = mysql_query($var_sql);
     // echo $conn;
 ?>

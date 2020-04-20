@@ -11,7 +11,7 @@
     $avg_question = 8;
     $hard_question = 6;
     
-    $count_check = "SELECT COUNT(*) FROM $user WHERE topic='$topic'"; 
+    $count_check = "SELECT COUNT(*) FROM `$user` WHERE topic='$topic'"; 
     $count_check = mysql_query($count_check);
     $count_check = (int)mysql_fetch_array($count_check)[0];
     // echo $count_check;
@@ -35,7 +35,7 @@
         $i=1;
         while($row = mysql_fetch_array($fq)) {
             if(in_array($i, $rand)) {
-                $iq = 'INSERT INTO '.$user.'(sl_no, question, option1, option2, option3, option4, answer, topic) VALUES('.(++$count).',"'.$row[0].'", "'.$row[1].'", "'.$row[2].'", "'.$row[3].'", "'.$row[4].'", "'.$row[5].'", "'.$topic.'")';
+                $iq = 'INSERT INTO `'.$user.'`(sl_no, question, option1, option2, option3, option4, answer, topic) VALUES('.(++$count).',"'.$row[0].'", "'.$row[1].'", "'.$row[2].'", "'.$row[3].'", "'.$row[4].'", "'.$row[5].'", "'.$topic.'")';
                 $conn = mysql_query($iq);
 
                 if(!$conn) {

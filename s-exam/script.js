@@ -31,7 +31,7 @@ else {
 console.log(currentTopic, currentQuestion, "t_count="+t_counter);
 
 //  Exam Time details #timer
-var examDuration =  10,
+var examDuration =  3600,
     timerDuration = examDuration,
     lap = examDuration, 
     warnTime = 5;
@@ -71,7 +71,7 @@ function startTimer(target, duration) {
         seconds = seconds < 10 ? "0" + seconds : seconds;
 
         target.innerHTML = minutes + ":" + seconds;
-        console.log("timer"+timer, "td"+timerDuration);
+        // console.log("timer"+timer, "td"+timerDuration);
 
         if(timer <= warnTime) {
             target.style.color = "red";
@@ -97,6 +97,7 @@ function initEvnironment() {
     document.getElementsByClassName("topic")[t_counter].classList.add("topic-selected");
     document.getElementsByClassName("q-circle")[currentQuestion-1].classList.add("question-selected");
 
+    console.log("User Name : "+user);
     console.log(questionArray, "Init env setup");
     for(let n=1; n<=questionNo; n++) {
         if((n-1)<4 && (n-1)<t_counter) 
@@ -114,7 +115,6 @@ function initEvnironment() {
     }
     createUserTable();
     setQuestion(questionNo, currentTopic);
-    // deleteUserTable();
 }
 function createUserTable() {
     // console.log("create user table");
@@ -122,6 +122,7 @@ function createUserTable() {
     xhr.open('GET', 'createUserDb.php?&user='+user, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
+            console.log(xhr.responseText);
             if(xhr.responseText != "1") 
                 console.log("User DB Repeatition problem");
             else 
@@ -153,7 +154,7 @@ function fetchQuestion() {
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
             arr = JSON.parse(xhr.responseText);
-            // console.log(arr);
+            console.log(arr);
             displayQuestion(arr);
         }
     }
@@ -279,10 +280,15 @@ function finish() {
         if(xhr.readyState == 4 && xhr.status == 200) {
             // console.log(xhr.responseText);
             localStorage.clear();
+            deleteUserTable();
             window.location = "examFinish.php";
         }
     }
     xhr.send(x);
+}
+
+function deleteUserTable() {
+    console.log("Delete User Table");
 }
 
 var answer = null;
