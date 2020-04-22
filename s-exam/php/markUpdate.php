@@ -8,10 +8,17 @@
     $mathtime = $_GET['mathtime'];
     $gktime = $_GET['gktime'];
 
-    $phy_sql = "SELECT COUNT(*) from $user WHERE topic='physics' AND result = 1";
-    $chem_sql = "SELECT COUNT(*) from $user WHERE topic='chemistry' AND result = 1";
-    $math_sql = "SELECT COUNT(*) from $user WHERE topic='maths' AND result = 1";
-    $gk_sql = "SELECT COUNT(*) from $user WHERE topic='gk' AND result = 1";
+    $phy_sql = "SELECT COUNT(*) from `".$user."` WHERE topic='physics' AND result = 1";
+    $chem_sql = "SELECT COUNT(*) from `$user` WHERE topic='chemistry' AND result = 1";
+    $math_sql = "SELECT COUNT(*) from `$user` WHERE topic='maths' AND result = 1";
+    $gk_sql = "SELECT COUNT(*) from `$user` WHERE topic='gk' AND result = 1";
+
+    echo $phy_sql."\n";
+
+    $phy_sql = ($phy_sql == null) ? 0 : $phy_sql;
+    $chem_sql = ($chem_sql == null) ? 0 : $chem_sql;
+    $math_sql = ($math_sql == null) ? 0 : $math_sql;
+    $gk_sql = ($gk_sql == null) ? 0 : $gk_sql;
 
     $arr = array();
     $phymark = mysql_fetch_array(mysql_query($phy_sql))[0];
@@ -26,9 +33,14 @@
                         physics_marks = $phymark,
                         chemistry_marks = $chemmark,
                         maths_marks = $mathmark,
-                        gk_marks = $gkmark 
+                        gk_marks = $gkmark,
+                        exam_status = 2
                         WHERE user_id = '$user'";
 
+    echo $var_sql."\n";
     $conn = mysql_query($var_sql);
+
+    
+    $var = mysql_query('DROP TABLE `'.$user.'`');
     echo $conn;
 ?>

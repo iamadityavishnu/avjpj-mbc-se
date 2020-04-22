@@ -14,7 +14,7 @@
         result int, 
         topic varchar(10))";
         
-        echo $var_sql;
+        // echo $var_sql;
     $conn = mysql_query($var_sql);
     // echo $conn;
 ?>

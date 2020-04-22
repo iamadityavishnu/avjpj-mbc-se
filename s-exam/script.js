@@ -56,7 +56,7 @@ window.onload = function() {
     if(timerDuration <= 0)
         this.finish();
 
-    console.log(timerDuration);    
+    // console.log(timerDuration);    
     startTimer(target, timerDuration);
 }
 
@@ -84,9 +84,10 @@ function startTimer(target, duration) {
             clearInterval(interval);
         }
         
-        if(timerDuration === 0) 
+        if(timerDuration === 0) {
+            localStorage.removeItem('clock');
             finish();
-
+        }
         timerDuration--;
         localStorage.setItem('clock', timerDuration);
     }, 1000);
@@ -97,8 +98,8 @@ function initEvnironment() {
     document.getElementsByClassName("topic")[t_counter].classList.add("topic-selected");
     document.getElementsByClassName("q-circle")[currentQuestion-1].classList.add("question-selected");
 
-    console.log("User Name : "+user);
-    console.log(questionArray, "Init env setup");
+    // console.log("User Name : "+user);
+    // console.log(questionArray, "Init env setup");
     for(let n=1; n<=questionNo; n++) {
         if((n-1)<4 && (n-1)<t_counter) 
             document.getElementsByClassName("topic")[n-1].classList.add('category-done');
@@ -122,7 +123,7 @@ function createUserTable() {
     xhr.open('GET', 'createUserDb.php?&user='+user, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            console.log(xhr.responseText);
+            // console.log(xhr.responseText);
             if(xhr.responseText != "1") 
                 console.log("User DB Repeatition problem");
             else 
@@ -278,7 +279,7 @@ function finish() {
     xhr.open("GET", "markUpdate.php?"+x, true);
     xhr.onreadystatechange = function() {
         if(xhr.readyState == 4 && xhr.status == 200) {
-            // console.log(xhr.responseText);
+            console.log(xhr.responseText);
             localStorage.clear();
             deleteUserTable();
             window.location = "examFinish.php";
@@ -340,6 +341,8 @@ function finalizeAnswer(answer) {
             console.log(xhr.responseText);
             if(questionArray.length != 0)
                 selectQuestion(nextQ);
+            else
+                nextTopic();
         }
     }
     xhr.send(x);
